@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>304麻将积分查询</title>
+    <meta name="description" content="304麻将积分查询：查看各学期排行榜、两两同桌分数差和历史对局。">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .stats-section {
+            margin-bottom: 30px;
+        }
+
+        .stats-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .rank-1 { background: #ffd700; font-weight: bold; }
+        .rank-2 { background: #c0c0c0; }
+        .rank-3 { background: #cd7f32; }
+
+        .history-section {
+            margin-top: 30px;
+        }
+
+        .history-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .history-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .history-item-header {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .history-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .player-score {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .player-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .score-value {
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .semester-switch-item {
+            border-left-color: #fd7e14;
+            background: #fff7ed;
+        }
+
+        .semester-switch-item .history-item-header {
+            color: #fd7e14;
+        }
+
+        .semester-awards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .award-card {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ffe0c2;
+        }
+
+        .award-title {
+            font-weight: bold;
+            color: #fd7e14;
+            margin-bottom: 6px;
+        }
+
+        .award-value {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .stats-toolbar {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .stats-toolbar select {
+            max-width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            background: white;
+            font: inherit;
+        }
+
+        .stats-note {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .table-scroll { overflow-x: auto; padding-bottom: 8px; }
+        .pair-scroll { max-height: 480px; }
+        #rankingTable { min-width: 640px; }
+        #pairTable { min-width: 420px; }
+        #pairTable thead { position: sticky; top: 0; }
+        .score-positive { color: #16703a; font-weight: bold; }
+        .score-negative { color: #c23131; font-weight: bold; }
+        .empty-state { padding: 24px; color: #666; text-align: center; }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .container { padding: 16px; }
+            h1 { font-size: 1.8em; }
+            .stats-toolbar select { width: 100%; }
+
+.history-details {
+                grid-template-columns: 1fr;
+            }
+
+            .semester-awards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🀄 304麻将积分查询</h1>
+        <p id="dataStatus" class="stats-note" style="text-align: center;" role="status">正在加载比赛记录…</p>
+        
+        <div class="stats-section">
+            <h2>📊 玩家排行榜</h2>
+            <div class="stats-toolbar">
+                <label for="semesterFilter">查看学期</label>
+                <select id="semesterFilter" onchange="updateRanking()">
+                    <option value="all">所有学期（累计积分）</option>
+                </select>
+            </div>
+            <p id="rankingSummary" class="stats-note" aria-live="polite"></p>
+            <div class="table-scroll">
+            <table id="rankingTable">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>姓名</th>
+                        <th id="rankingScoreLabel">累计积分</th>
+                        <th>第1名</th>
+                        <th>第2名</th>
+                        <th>第3名</th>
+                        <th>第4名</th>
+                        <th>场次</th>
+                    </tr>
+                </thead>
+                <tbody id="rankingBody">
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2>🤝 两两同桌分数差</h2>
+            <p class="stats-note">固定统计所有学期：Σ（A 的最终得分 − B 的最终得分，含顺位分），只计两人同桌的对局。正数表示 A 高于 B，负数表示 A 低于 B；换学期不减半，不受上方学期筛选影响。</p>
+            <div class="stats-toolbar">
+                <label for="pairPlayerA">玩家 A</label>
+                <select id="pairPlayerA" onchange="updatePairRanking()"><option value="">全部玩家</option></select>
+                <label for="pairPlayerB">玩家 B</label>
+                <select id="pairPlayerB" onchange="updatePairRanking()"><option value="">全部玩家</option></select>
+            </div>
+            <p id="pairSummary" class="stats-note" aria-live="polite"></p>
+            <div class="table-scroll pair-scroll">
+                <table id="pairTable">
+                    <thead><tr><th>组合（A, B）</th><th>同桌场次</th><th>累计分数差（A − B）</th></tr></thead>
+                    <tbody id="pairBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h2>📝 历史记录</h2>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <script>
+        let gameRecords = [];
+        let playerStats = Object.create(null);
+        let pairStats = Object.create(null);
+
+        function roundToOneDecimal(num) {
+            return Math.round(num * 10) / 10;
+        }
+
+        function formatRate(rate) {
+            return (rate * 100).toFixed(1) + '%';
+        }
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[char]);
+        }
+
+        function normalizeRecords(records) {
+            if (!Array.isArray(records)) throw new Error('缺少有效的 records 对局列表。');
+            let seasonRecords = [];
+            return records.map((record, index) => {
+                if (!record || typeof record.date !== 'string') {
+                    throw new Error(`第 ${index + 1} 条记录缺少日期。`);
+                }
+                if (record.type === 'semesterSwitch') {
+                    const normalized = { ...record, awards: calculateSeasonAwards(seasonRecords) };
+                    seasonRecords = [];
+                    return normalized;
+                }
+                if ((record.type && record.type !== 'game') || !Array.isArray(record.players) || record.players.length !== 4) {
+                    throw new Error(`第 ${index + 1} 条记录必须包含四位玩家。`);
+                }
+                const names = new Set();
+                const players = record.players.map(player => {
+                    if (!player || typeof player.name !== 'string' || !player.name.trim() ||
+                        !Number.isSafeInteger(player.points) || !Number.isInteger(player.rank) ||
+                        player.rank < 0 || player.rank > 3 || !Number.isFinite(player.finalScore)) {
+                        throw new Error(`第 ${index + 1} 条记录的玩家姓名、点数、名次或得分无效。`);
+                    }
+                    const name = player.name.trim();
+                    if (names.has(name)) throw new Error(`第 ${index + 1} 条记录有重复玩家：${name}`);
+                    names.add(name);
+                    return { ...player, name };
+                });
+                const normalized = { ...record, type: 'game', players };
+                seasonRecords.push(normalized);
+                return normalized;
+            });
+        }
+
+        function calculatePlayerStats(records, applySemesterDecay = false) {
+            const stats = Object.create(null);
+            records.forEach(record => {
+                if (record.type === 'semesterSwitch') {
+                    if (applySemesterDecay) {
+                        Object.values(stats).forEach(player => {
+                            player.totalScore = roundToOneDecimal(player.totalScore / 2);
+                        });
+                    }
+                    return;
+                }
+                record.players.forEach(player => {
+                    if (!stats[player.name]) {
+                        stats[player.name] = { totalScore: 0, ranks: [0, 0, 0, 0], games: 0 };
+                    }
+                    stats[player.name].totalScore += player.finalScore;
+                    stats[player.name].ranks[player.rank]++;
+                    stats[player.name].games++;
+                });
+            });
+            return stats;
+        }
+
+        function getSemesters() {
+            const semesters = [{ number: 1, records: [] }];
+            gameRecords.forEach(record => {
+                if (record.type === 'semesterSwitch') {
+                    semesters.push({ number: semesters.length + 1, records: [] });
+                } else {
+                    semesters[semesters.length - 1].records.push(record);
+                }
+            });
+            return semesters;
+        }
+
+        function updateSemesterFilter() {
+            const select = document.getElementById('semesterFilter');
+            const selected = select.value;
+            select.replaceChildren(new Option('所有学期（累计积分）', 'all'));
+            const semesters = getSemesters();
+            semesters.forEach(semester => {
+                const current = semester.number === semesters.length ? ' · 当前' : '';
+                select.add(new Option(`第 ${semester.number} 学期${current}（${semester.records.length} 局）`, String(semester.number)));
+            });
+            select.value = [...select.options].some(option => option.value === selected) ? selected : 'all';
+        }
+
+        function calculatePairStats(records) {
+            const stats = Object.create(null);
+            records.forEach(record => {
+                if (record.type === 'semesterSwitch') return;
+                record.players.forEach(playerA => {
+                    record.players.forEach(playerB => {
+                        if (playerA.name === playerB.name) return;
+                        // JSON 数组形式的 key 保留姓名边界，避免逗号等字符导致组合冲突。
+                        const key = JSON.stringify([playerA.name, playerB.name]);
+                        if (!stats[key]) {
+                            stats[key] = { playerA: playerA.name, playerB: playerB.name, games: 0, scoreDifference: 0 };
+                        }
+                        stats[key].games++;
+                        stats[key].scoreDifference = roundToOneDecimal(stats[key].scoreDifference + playerA.finalScore - playerB.finalScore) || 0;
+                    });
+                });
+            });
+            return stats;
+        }
+
+        function updatePairFilters() {
+            const names = Object.keys(playerStats).sort((a, b) => a.localeCompare(b, 'zh-CN'));
+            ['pairPlayerA', 'pairPlayerB'].forEach(id => {
+                const select = document.getElementById(id);
+                const selected = select.value;
+                select.replaceChildren(new Option('全部玩家', ''));
+                names.forEach(name => select.add(new Option(name, name)));
+                select.value = names.includes(selected) ? selected : '';
+            });
+        }
+
+        function updatePairRanking() {
+            const nameA = document.getElementById('pairPlayerA').value;
+            const nameB = document.getElementById('pairPlayerB').value;
+            const pairs = Object.values(pairStats).filter(pair => {
+                if (nameA && pair.playerA !== nameA) return false;
+                if (nameB && pair.playerB !== nameB) return false;
+                return nameA || nameB || pair.playerA < pair.playerB;
+            }).sort((a, b) => b.games - a.games || a.playerA.localeCompare(b.playerA, 'zh-CN') || a.playerB.localeCompare(b.playerB, 'zh-CN'));
+            const tbody = document.getElementById('pairBody');
+            tbody.innerHTML = '';
+            const games = gameRecords.filter(record => record.type !== 'semesterSwitch').length;
+            document.getElementById('pairSummary').textContent = `所有学期共 ${games} 局 · 当前显示 ${pairs.length} 组${!nameA && !nameB ? '（每组只展示一个方向）' : ''}`;
+            if (!pairs.length) {
+                tbody.innerHTML = '<tr><td colspan="3" class="empty-state">暂无符合条件的同桌记录，请选择两位不同的玩家。</td></tr>';
+                return;
+            }
+            pairs.forEach(pair => {
+                const tr = document.createElement('tr');
+                const sign = pair.scoreDifference > 0 ? '+' : '';
+                const color = pair.scoreDifference > 0 ? 'score-positive' : pair.scoreDifference < 0 ? 'score-negative' : '';
+                tr.innerHTML = `<td>(${escapeHtml(pair.playerA)}, ${escapeHtml(pair.playerB)})</td><td>${pair.games}</td><td class="${color}">${sign}${pair.scoreDifference.toLocaleString('zh-CN', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateDisplay() {
+            updateSemesterFilter();
+            updateRanking();
+            updatePairFilters();
+            updatePairRanking();
+            updateHistory();
+        }
+
+        function updateRanking() {
+            const tbody = document.getElementById('rankingBody');
+            tbody.innerHTML = '';
+
+            const semesterValue = document.getElementById('semesterFilter').value;
+            const semester = getSemesters().find(item => String(item.number) === semesterValue);
+            const stats = semester ? calculatePlayerStats(semester.records) : playerStats;
+            const games = semester ? semester.records.length : gameRecords.filter(record => record.type !== 'semesterSwitch').length;
+            const summary = semester
+                ? `第 ${semester.number} 学期 · ${games} 局 · 只累计本学期对局得分，不含上学期结转积分，不减半。`
+                : `所有学期 · ${games} 局 · 累计积分沿用每次换学期减半的规则，名次和场次统计所有学期。`;
+            const dateRange = semester && games ? ` 对局日期：${semester.records[0].date.split(' ')[0]} — ${semester.records[games - 1].date.split(' ')[0]}` : '';
+            document.getElementById('rankingSummary').textContent = summary + dateRange;
+            document.getElementById('rankingScoreLabel').textContent = semester ? '学期得分' : '累计积分';
+            const sortedPlayers = Object.entries(stats)
+                .map(([name, stats]) => ({ name, ...stats }))
+                .sort((a, b) => b.totalScore - a.totalScore);
+
+            if (!sortedPlayers.length) {
+                tbody.innerHTML = '<tr><td colspan="8" class="empty-state">该范围暂无比赛记录。</td></tr>';
+                return;
+            }
+
+            sortedPlayers.forEach((player, index) => {
+                const tr = document.createElement('tr');
+                if (index === 0) tr.className = 'rank-1';
+                else if (index === 1) tr.className = 'rank-2';
+                else if (index === 2) tr.className = 'rank-3';
+
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${escapeHtml(player.name)}</td>
+                    <td>${roundToOneDecimal(player.totalScore).toFixed(1)}</td>
+                    <td>${player.ranks[0]}</td>
+                    <td>${player.ranks[1]}</td>
+                    <td>${player.ranks[2]}</td>
+                    <td>${player.ranks[3]}</td>
+                    <td>${player.games}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function calculateSeasonAwards(records) {
+            if (!records.length) {
+                return {
+                    hasData: false
+                };
+            }
+
+            const seasonStats = Object.create(null);
+            let highestSingleGame = null;
+
+            records.forEach(record => {
+                record.players.forEach(player => {
+                    if (!seasonStats[player.name]) {
+                        seasonStats[player.name] = {
+                            totalScore: 0,
+                            firstCount: 0,
+                            fourthCount: 0,
+                            games: 0
+                        };
+                    }
+
+                    seasonStats[player.name].totalScore += player.finalScore;
+                    seasonStats[player.name].games++;
+
+                    if (player.rank === 0) seasonStats[player.name].firstCount++;
+                    if (player.rank === 3) seasonStats[player.name].fourthCount++;
+
+                    if (
+                        !highestSingleGame ||
+                        player.finalScore > highestSingleGame.score
+                    ) {
+                        highestSingleGame = {
+                            name: player.name,
+                            score: player.finalScore,
+                            points: player.points,
+                            date: record.date
+                        };
+                    }
+                });
+            });
+
+            const players = Object.entries(seasonStats).map(([name, stats]) => ({
+                name,
+                ...stats,
+                avoidFourthRate: stats.games > 0 ? (stats.games - stats.fourthCount) / stats.games : 0
+            }));
+
+            const seasonMVP = [...players].sort((a, b) => {
+                if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
+                return b.games - a.games;
+            })[0];
+
+            const bestAvoidFourth = [...players].sort((a, b) => {
+                if (b.avoidFourthRate !== a.avoidFourthRate) return b.avoidFourthRate - a.avoidFourthRate;
+                if (b.games !== a.games) return b.games - a.games;
+                return b.totalScore - a.totalScore;
+            })[0];
+
+            const mostFirst = [...players].sort((a, b) => {
+                if (b.firstCount !== a.firstCount) return b.firstCount - a.firstCount;
+                return b.totalScore - a.totalScore;
+            })[0];
+
+            return {
+                hasData: true,
+                seasonMVP,
+                highestSingleGame,
+                bestAvoidFourth,
+                mostFirst,
+                gameCount: records.length
+            };
+        }
+
+        function updateHistory() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+
+            const reversedRecords = [...gameRecords].reverse();
+            let gameCounter = gameRecords.filter(r => r.type !== 'semesterSwitch').length;
+
+            reversedRecords.forEach(record => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+
+                const header = document.createElement('div');
+                header.className = 'history-item-header';
+
+                if (record.type === 'semesterSwitch') {
+                    div.classList.add('semester-switch-item');
+                    header.textContent = `学期切换 - ${record.date}`;
+                    div.appendChild(header);
+
+                    const awards = record.awards;
+
+                    if (!awards || !awards.hasData) {
+                        const emptyText = document.createElement('div');
+                        emptyText.textContent = '该学期暂无有效比赛数据。';
+                        div.appendChild(emptyText);
+                    } else {
+                        const summary = document.createElement('div');
+                        summary.style.marginBottom = '12px';
+                        summary.style.color = '#666';
+                        summary.textContent = `本赛季共 ${awards.gameCount} 局`;
+                        div.appendChild(summary);
+
+                        const awardsDiv = document.createElement('div');
+                        awardsDiv.className = 'semester-awards';
+
+                        awardsDiv.innerHTML = `
+                            <div class="award-card">
+                                <div class="award-title">赛季MVP</div>
+                                <div class="award-value">
+                                    ${escapeHtml(awards.seasonMVP.name)}<br>
+                                    总分：${roundToOneDecimal(awards.seasonMVP.totalScore).toFixed(1)}
+                                </div>
+                            </div>
+                            <div class="award-card">
+                                <div class="award-title">最高半庄打点</div>
+                                <div class="award-value">
+                                    ${escapeHtml(awards.highestSingleGame.name)}<br>
+                                    得分：${roundToOneDecimal(awards.highestSingleGame.score).toFixed(1)}<br>
+                                    点数：${awards.highestSingleGame.points}
+                                </div>
+                            </div>
+                            <div class="award-card">
+                                <div class="award-title">最高避四率</div>
+                                <div class="award-value">
+                                    ${escapeHtml(awards.bestAvoidFourth.name)}<br>
+                                    避四率：${formatRate(awards.bestAvoidFourth.avoidFourthRate)}<br>
+                                    场次：${awards.bestAvoidFourth.games}
+                                </div>
+                            </div>
+                            <div class="award-card">
+                                <div class="award-title">最多一位次数</div>
+                                <div class="award-value">
+                                    ${escapeHtml(awards.mostFirst.name)}<br>
+                                    一位次数：${awards.mostFirst.firstCount}
+                                </div>
+                            </div>
+                        `;
+
+                        div.appendChild(awardsDiv);
+                    }
+                } else {
+                    header.textContent = `第 ${gameCounter} 局 - ${record.date}`;
+                    gameCounter--;
+                    div.appendChild(header);
+
+                    const details = document.createElement('div');
+                    details.className = 'history-details';
+                    
+                    record.players.forEach(player => {
+                        const playerDiv = document.createElement('div');
+                        playerDiv.className = 'player-score';
+                        playerDiv.innerHTML = `
+                            <div class="player-name">${escapeHtml(player.name)} (第${player.rank + 1}名)</div>
+                            <div>点数: ${player.points}</div>
+                            <div class="score-value">得分: ${roundToOneDecimal(player.finalScore).toFixed(1)}</div>
+                        `;
+                        details.appendChild(playerDiv);
+                    });
+                    
+                    div.appendChild(details);
+                }
+
+                historyList.appendChild(div);
+            });
+        }
+
+        async function loadData() {
+            const status = document.getElementById('dataStatus');
+            try {
+                const response = await fetch('./data.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                gameRecords = normalizeRecords(data.records);
+                playerStats = calculatePlayerStats(gameRecords, true);
+                pairStats = calculatePairStats(gameRecords);
+                updateDisplay();
+                const games = gameRecords.filter(record => record.type !== 'semesterSwitch').length;
+                status.textContent = `数据更新：${data.exportDate || '未注明'} · ${games} 局 · ${getSemesters().length} 个学期`;
+            } catch (error) {
+                console.error('比赛数据加载失败', error);
+                status.textContent = '比赛数据加载失败，请刷新页面重试。';
+                status.style.color = '#c23131';
+            }
+        }
+
+        window.onload = loadData;
+    </script>
+</body>
+</html>

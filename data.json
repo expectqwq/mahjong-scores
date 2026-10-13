@@ -1,0 +1,1968 @@
+{
+  "exportDate": "2026/10/13 23:43:19",
+  "records": [
+    {
+      "date": "2025/10/18 00:41:28",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 50500,
+          "rank": 0,
+          "finalScore": 55.5
+        },
+        {
+          "name": "wzl",
+          "points": 49000,
+          "rank": 1,
+          "finalScore": 34
+        },
+        {
+          "name": "gy",
+          "points": 5300,
+          "rank": 2,
+          "finalScore": -29.7
+        },
+        {
+          "name": "wkj",
+          "points": -4800,
+          "rank": 3,
+          "finalScore": -59.8
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:42:19",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 46400,
+          "rank": 0,
+          "finalScore": 51.4
+        },
+        {
+          "name": "wzl",
+          "points": 26900,
+          "rank": 1,
+          "finalScore": 11.9
+        },
+        {
+          "name": "ztq",
+          "points": 15600,
+          "rank": 2,
+          "finalScore": -19.4
+        },
+        {
+          "name": "lsh",
+          "points": 11100,
+          "rank": 3,
+          "finalScore": -43.9
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:43:16",
+      "players": [
+        {
+          "name": "sgc",
+          "points": 40300,
+          "rank": 0,
+          "finalScore": 45.3
+        },
+        {
+          "name": "wzl",
+          "points": 30400,
+          "rank": 1,
+          "finalScore": 15.4
+        },
+        {
+          "name": "ztq",
+          "points": 23000,
+          "rank": 2,
+          "finalScore": -12
+        },
+        {
+          "name": "qzy",
+          "points": 6300,
+          "rank": 3,
+          "finalScore": -48.7
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:43:34",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 32000,
+          "rank": 0,
+          "finalScore": 37
+        },
+        {
+          "name": "wzl",
+          "points": 26100,
+          "rank": 1,
+          "finalScore": 11.1
+        },
+        {
+          "name": "ztq",
+          "points": 24100,
+          "rank": 2,
+          "finalScore": -10.9
+        },
+        {
+          "name": "sgc",
+          "points": 17800,
+          "rank": 3,
+          "finalScore": -37.2
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:44:11",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 60100,
+          "rank": 0,
+          "finalScore": 65.1
+        },
+        {
+          "name": "wzl",
+          "points": 27100,
+          "rank": 1,
+          "finalScore": 12.1
+        },
+        {
+          "name": "qzy",
+          "points": 12100,
+          "rank": 2,
+          "finalScore": -22.9
+        },
+        {
+          "name": "sgc",
+          "points": 700,
+          "rank": 3,
+          "finalScore": -54.3
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:44:31",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 47100,
+          "rank": 0,
+          "finalScore": 52.1
+        },
+        {
+          "name": "wzl",
+          "points": 39500,
+          "rank": 1,
+          "finalScore": 24.5
+        },
+        {
+          "name": "sgc",
+          "points": 13300,
+          "rank": 2,
+          "finalScore": -21.7
+        },
+        {
+          "name": "ztq",
+          "points": -1800,
+          "rank": 3,
+          "finalScore": -56.8
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:44:59",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 38400,
+          "rank": 0,
+          "finalScore": 43.4
+        },
+        {
+          "name": "wzl",
+          "points": 35600,
+          "rank": 1,
+          "finalScore": 20.6
+        },
+        {
+          "name": "ztq",
+          "points": 26100,
+          "rank": 2,
+          "finalScore": -8.9
+        },
+        {
+          "name": "cyz",
+          "points": -100,
+          "rank": 3,
+          "finalScore": -55.1
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:45:18",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 40500,
+          "rank": 0,
+          "finalScore": 45.5
+        },
+        {
+          "name": "ztq",
+          "points": 24700,
+          "rank": 1,
+          "finalScore": 9.7
+        },
+        {
+          "name": "qzy",
+          "points": 20700,
+          "rank": 2,
+          "finalScore": -14.3
+        },
+        {
+          "name": "cyz",
+          "points": 14100,
+          "rank": 3,
+          "finalScore": -40.9
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:46:02",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 38900,
+          "rank": 0,
+          "finalScore": 43.9
+        },
+        {
+          "name": "sgc",
+          "points": 33100,
+          "rank": 1,
+          "finalScore": 18.1
+        },
+        {
+          "name": "wzl",
+          "points": 21100,
+          "rank": 2,
+          "finalScore": -13.9
+        },
+        {
+          "name": "cyz",
+          "points": 6900,
+          "rank": 3,
+          "finalScore": -48.1
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:46:23",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 43900,
+          "rank": 0,
+          "finalScore": 48.9
+        },
+        {
+          "name": "qzy",
+          "points": 35300,
+          "rank": 1,
+          "finalScore": 20.3
+        },
+        {
+          "name": "gy",
+          "points": 22600,
+          "rank": 2,
+          "finalScore": -12.4
+        },
+        {
+          "name": "cyz",
+          "points": -1800,
+          "rank": 3,
+          "finalScore": -56.8
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:47:09",
+      "players": [
+        {
+          "name": "wkj",
+          "points": 45400,
+          "rank": 0,
+          "finalScore": 50.4
+        },
+        {
+          "name": "ydy",
+          "points": 43100,
+          "rank": 1,
+          "finalScore": 28.1
+        },
+        {
+          "name": "ztq",
+          "points": 10100,
+          "rank": 2,
+          "finalScore": -24.9
+        },
+        {
+          "name": "lsh",
+          "points": 1400,
+          "rank": 3,
+          "finalScore": -53.6
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:47:29",
+      "players": [
+        {
+          "name": "lsh",
+          "points": 40900,
+          "rank": 0,
+          "finalScore": 45.9
+        },
+        {
+          "name": "wkj",
+          "points": 21400,
+          "rank": 1,
+          "finalScore": 6.4
+        },
+        {
+          "name": "sgc",
+          "points": 20300,
+          "rank": 2,
+          "finalScore": -14.7
+        },
+        {
+          "name": "ztq",
+          "points": 17400,
+          "rank": 3,
+          "finalScore": -37.6
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:47:53",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 40600,
+          "rank": 0,
+          "finalScore": 45.6
+        },
+        {
+          "name": "wzl",
+          "points": 23400,
+          "rank": 1,
+          "finalScore": 8.4
+        },
+        {
+          "name": "ywk",
+          "points": 18600,
+          "rank": 2,
+          "finalScore": -16.4
+        },
+        {
+          "name": "qzy",
+          "points": 17400,
+          "rank": 3,
+          "finalScore": -37.6
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:48:17",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 48900,
+          "rank": 0,
+          "finalScore": 53.9
+        },
+        {
+          "name": "ywk",
+          "points": 27800,
+          "rank": 1,
+          "finalScore": 12.8
+        },
+        {
+          "name": "wzl",
+          "points": 25900,
+          "rank": 2,
+          "finalScore": -9.1
+        },
+        {
+          "name": "ztq",
+          "points": -2600,
+          "rank": 3,
+          "finalScore": -57.6
+        }
+      ]
+    },
+    {
+      "date": "2025/10/18 00:48:41",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 60700,
+          "rank": 0,
+          "finalScore": 65.7
+        },
+        {
+          "name": "ywk",
+          "points": 17200,
+          "rank": 1,
+          "finalScore": 2.2
+        },
+        {
+          "name": "wzl",
+          "points": 14800,
+          "rank": 2,
+          "finalScore": -20.2
+        },
+        {
+          "name": "ztq",
+          "points": 7300,
+          "rank": 3,
+          "finalScore": -47.7
+        }
+      ]
+    },
+    {
+      "date": "2026/1/9 22:07:52",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 31300,
+          "rank": 0,
+          "finalScore": 36.3
+        },
+        {
+          "name": "cyz",
+          "points": 27700,
+          "rank": 1,
+          "finalScore": 12.7
+        },
+        {
+          "name": "qzy",
+          "points": 27300,
+          "rank": 2,
+          "finalScore": -7.7
+        },
+        {
+          "name": "lsh",
+          "points": 13700,
+          "rank": 3,
+          "finalScore": -41.3
+        }
+      ]
+    },
+    {
+      "date": "2026/1/9 22:08:07",
+      "players": [
+        {
+          "name": "cyz",
+          "points": 39000,
+          "rank": 0,
+          "finalScore": 44
+        },
+        {
+          "name": "ztq",
+          "points": 25100,
+          "rank": 1,
+          "finalScore": 10.1
+        },
+        {
+          "name": "qzy",
+          "points": 22200,
+          "rank": 2,
+          "finalScore": -12.8
+        },
+        {
+          "name": "lsh",
+          "points": 13700,
+          "rank": 3,
+          "finalScore": -41.3
+        }
+      ]
+    },
+    {
+      "date": "2026/1/9 22:08:23",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 35700,
+          "rank": 0,
+          "finalScore": 40.7
+        },
+        {
+          "name": "cyz",
+          "points": 35600,
+          "rank": 1,
+          "finalScore": 20.6
+        },
+        {
+          "name": "lsh",
+          "points": 23300,
+          "rank": 2,
+          "finalScore": -11.7
+        },
+        {
+          "name": "qzy",
+          "points": 5400,
+          "rank": 3,
+          "finalScore": -49.6
+        }
+      ]
+    },
+    {
+      "date": "2026/1/9 22:08:41",
+      "players": [
+        {
+          "name": "cyz",
+          "points": 43800,
+          "rank": 0,
+          "finalScore": 48.8
+        },
+        {
+          "name": "qzy",
+          "points": 35500,
+          "rank": 1,
+          "finalScore": 20.5
+        },
+        {
+          "name": "wzl",
+          "points": 25500,
+          "rank": 2,
+          "finalScore": -9.5
+        },
+        {
+          "name": "ftl",
+          "points": -4800,
+          "rank": 3,
+          "finalScore": -59.8
+        }
+      ]
+    },
+    {
+      "date": "2026/1/9 22:08:55",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 29200,
+          "rank": 0,
+          "finalScore": 34.2
+        },
+        {
+          "name": "wzl",
+          "points": 25400,
+          "rank": 1,
+          "finalScore": 10.4
+        },
+        {
+          "name": "ztq",
+          "points": 24500,
+          "rank": 2,
+          "finalScore": -10.5
+        },
+        {
+          "name": "cyz",
+          "points": 20900,
+          "rank": 3,
+          "finalScore": -34.1
+        }
+      ]
+    },
+    {
+      "date": "2026/1/9 22:09:18",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 43400,
+          "rank": 0,
+          "finalScore": 48.4
+        },
+        {
+          "name": "ztq",
+          "points": 35800,
+          "rank": 1,
+          "finalScore": 20.8
+        },
+        {
+          "name": "sgc",
+          "points": 22500,
+          "rank": 2,
+          "finalScore": -12.5
+        },
+        {
+          "name": "yy",
+          "points": -1700,
+          "rank": 3,
+          "finalScore": -56.7
+        }
+      ]
+    },
+    {
+      "date": "2026/3/6 11:03:27",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 43000,
+          "rank": 0,
+          "finalScore": 48
+        },
+        {
+          "name": "ztq",
+          "points": 31700,
+          "rank": 1,
+          "finalScore": 16.7
+        },
+        {
+          "name": "ydy",
+          "points": 19300,
+          "rank": 2,
+          "finalScore": -15.7
+        },
+        {
+          "name": "gy",
+          "points": 6000,
+          "rank": 3,
+          "finalScore": -49
+        }
+      ]
+    },
+    {
+      "date": "2026/3/6 11:03:57",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 48600,
+          "rank": 0,
+          "finalScore": 53.6
+        },
+        {
+          "name": "ydy",
+          "points": 28300,
+          "rank": 1,
+          "finalScore": 13.3
+        },
+        {
+          "name": "ztq",
+          "points": 24100,
+          "rank": 2,
+          "finalScore": -10.9
+        },
+        {
+          "name": "mqz",
+          "points": -1000,
+          "rank": 3,
+          "finalScore": -56
+        }
+      ]
+    },
+    {
+      "date": "2026/3/6 11:04:15",
+      "players": [
+        {
+          "name": "sgc",
+          "points": 38600,
+          "rank": 0,
+          "finalScore": 43.6
+        },
+        {
+          "name": "lsh",
+          "points": 37000,
+          "rank": 1,
+          "finalScore": 22
+        },
+        {
+          "name": "ztq",
+          "points": 26400,
+          "rank": 2,
+          "finalScore": -8.6
+        },
+        {
+          "name": "wzl",
+          "points": -2000,
+          "rank": 3,
+          "finalScore": -57
+        }
+      ]
+    },
+    {
+      "date": "2026/3/6 11:04:38",
+      "players": [
+        {
+          "name": "mqz",
+          "points": 33400,
+          "rank": 0,
+          "finalScore": 38.4
+        },
+        {
+          "name": "ydy",
+          "points": 30800,
+          "rank": 1,
+          "finalScore": 15.8
+        },
+        {
+          "name": "ztq",
+          "points": 26500,
+          "rank": 2,
+          "finalScore": -8.5
+        },
+        {
+          "name": "wzl",
+          "points": 9300,
+          "rank": 3,
+          "finalScore": -45.7
+        }
+      ]
+    },
+    {
+      "type": "semesterSwitch",
+      "date": "2026/3/8 00:28:53",
+      "awards": {
+        "hasData": true,
+        "seasonMVP": {
+          "name": "wzl",
+          "totalScore": 237.40000000000003,
+          "firstCount": 5,
+          "fourthCount": 2,
+          "games": 20,
+          "avoidFourthRate": 0.9
+        },
+        "highestSingleGame": {
+          "name": "qzy",
+          "score": 65.7,
+          "points": 60700,
+          "date": "2025/10/18 00:48:41"
+        },
+        "bestAvoidFourth": {
+          "name": "ydy",
+          "totalScore": 41.5,
+          "firstCount": 0,
+          "fourthCount": 0,
+          "games": 4,
+          "avoidFourthRate": 1
+        },
+        "mostFirst": {
+          "name": "qzy",
+          "totalScore": 228.80000000000007,
+          "firstCount": 8,
+          "fourthCount": 3,
+          "games": 17,
+          "avoidFourthRate": 0.8235294117647058
+        },
+        "gameCount": 25
+      }
+    },
+    {
+      "type": "game",
+      "date": "2026/3/8 00:31:49",
+      "players": [
+        {
+          "name": "wyc",
+          "points": 41100,
+          "rank": 0,
+          "finalScore": 46.1
+        },
+        {
+          "name": "ydy",
+          "points": 35900,
+          "rank": 1,
+          "finalScore": 20.9
+        },
+        {
+          "name": "ldt",
+          "points": 24400,
+          "rank": 2,
+          "finalScore": -10.6
+        },
+        {
+          "name": "lc",
+          "points": -1400,
+          "rank": 3,
+          "finalScore": -56.4
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/8 00:32:05",
+      "players": [
+        {
+          "name": "ydy",
+          "points": 51700,
+          "rank": 0,
+          "finalScore": 56.7
+        },
+        {
+          "name": "ldt",
+          "points": 26200,
+          "rank": 1,
+          "finalScore": 11.2
+        },
+        {
+          "name": "wyc",
+          "points": 25000,
+          "rank": 2,
+          "finalScore": -10
+        },
+        {
+          "name": "lc",
+          "points": -2900,
+          "rank": 3,
+          "finalScore": -57.9
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/8 00:33:20",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 49100,
+          "rank": 0,
+          "finalScore": 54.1
+        },
+        {
+          "name": "ydy",
+          "points": 46100,
+          "rank": 1,
+          "finalScore": 31.1
+        },
+        {
+          "name": "gy",
+          "points": 5000,
+          "rank": 2,
+          "finalScore": -30
+        },
+        {
+          "name": "ztq",
+          "points": -200,
+          "rank": 3,
+          "finalScore": -55.2
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/8 00:33:43",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 36800,
+          "rank": 0,
+          "finalScore": 41.8
+        },
+        {
+          "name": "sgc",
+          "points": 28200,
+          "rank": 1,
+          "finalScore": 13.2
+        },
+        {
+          "name": "ztq",
+          "points": 24600,
+          "rank": 2,
+          "finalScore": -10.4
+        },
+        {
+          "name": "qzy",
+          "points": 10400,
+          "rank": 3,
+          "finalScore": -44.6
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/8 00:34:03",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 35700,
+          "rank": 0,
+          "finalScore": 40.7
+        },
+        {
+          "name": "ztq",
+          "points": 23400,
+          "rank": 1,
+          "finalScore": 8.4
+        },
+        {
+          "name": "gy",
+          "points": 22000,
+          "rank": 2,
+          "finalScore": -13
+        },
+        {
+          "name": "qzy",
+          "points": 18900,
+          "rank": 3,
+          "finalScore": -36.1
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/8 00:34:25",
+      "players": [
+        {
+          "name": "ydy",
+          "points": 37900,
+          "rank": 0,
+          "finalScore": 42.9
+        },
+        {
+          "name": "ss",
+          "points": 28000,
+          "rank": 1,
+          "finalScore": 13
+        },
+        {
+          "name": "gy",
+          "points": 17800,
+          "rank": 2,
+          "finalScore": -17.2
+        },
+        {
+          "name": "sgc",
+          "points": 16300,
+          "rank": 3,
+          "finalScore": -38.7
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/10 22:43:27",
+      "players": [
+        {
+          "name": "ldt",
+          "points": 53400,
+          "rank": 0,
+          "finalScore": 58.4
+        },
+        {
+          "name": "wzl",
+          "points": 28400,
+          "rank": 1,
+          "finalScore": 13.4
+        },
+        {
+          "name": "ztq",
+          "points": 12900,
+          "rank": 2,
+          "finalScore": -22.1
+        },
+        {
+          "name": "wyc",
+          "points": 5300,
+          "rank": 3,
+          "finalScore": -49.7
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/10 22:43:50",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 38100,
+          "rank": 0,
+          "finalScore": 43.1
+        },
+        {
+          "name": "wzl",
+          "points": 33400,
+          "rank": 1,
+          "finalScore": 18.4
+        },
+        {
+          "name": "ldt",
+          "points": 29400,
+          "rank": 2,
+          "finalScore": -5.6
+        },
+        {
+          "name": "wyc",
+          "points": -900,
+          "rank": 3,
+          "finalScore": -55.9
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/21 21:36:48",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 43000,
+          "rank": 0,
+          "finalScore": 48
+        },
+        {
+          "name": "sgc",
+          "points": 30900,
+          "rank": 1,
+          "finalScore": 15.9
+        },
+        {
+          "name": "ss",
+          "points": 25300,
+          "rank": 2,
+          "finalScore": -9.7
+        },
+        {
+          "name": "ztq",
+          "points": 800,
+          "rank": 3,
+          "finalScore": -54.2
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/3/21 21:37:49",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 55300,
+          "rank": 0,
+          "finalScore": 60.3
+        },
+        {
+          "name": "wkj",
+          "points": 24700,
+          "rank": 1,
+          "finalScore": 9.7
+        },
+        {
+          "name": "wzl",
+          "points": 19800,
+          "rank": 2,
+          "finalScore": -15.2
+        },
+        {
+          "name": "ztq",
+          "points": 200,
+          "rank": 3,
+          "finalScore": -54.8
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/4/2 23:50:51",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 37500,
+          "rank": 0,
+          "finalScore": 42.5
+        },
+        {
+          "name": "wkj",
+          "points": 34300,
+          "rank": 1,
+          "finalScore": 19.3
+        },
+        {
+          "name": "qzy",
+          "points": 23400,
+          "rank": 2,
+          "finalScore": -11.6
+        },
+        {
+          "name": "wzl",
+          "points": 4800,
+          "rank": 3,
+          "finalScore": -50.2
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/4/2 23:51:06",
+      "players": [
+        {
+          "name": "ckh",
+          "points": 40400,
+          "rank": 0,
+          "finalScore": 45.4
+        },
+        {
+          "name": "wzl",
+          "points": 39300,
+          "rank": 1,
+          "finalScore": 24.3
+        },
+        {
+          "name": "wkj",
+          "points": 29300,
+          "rank": 2,
+          "finalScore": -5.7
+        },
+        {
+          "name": "sgc",
+          "points": -9000,
+          "rank": 3,
+          "finalScore": -64
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/4/2 23:51:35",
+      "players": [
+        {
+          "name": "ss",
+          "points": 56500,
+          "rank": 0,
+          "finalScore": 61.5
+        },
+        {
+          "name": "wzl",
+          "points": 33400,
+          "rank": 1,
+          "finalScore": 18.4
+        },
+        {
+          "name": "wkj",
+          "points": 23000,
+          "rank": 2,
+          "finalScore": -12
+        },
+        {
+          "name": "ztq",
+          "points": -12900,
+          "rank": 3,
+          "finalScore": -67.9
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/4/2 23:51:53",
+      "players": [
+        {
+          "name": "wkj",
+          "points": 58800,
+          "rank": 0,
+          "finalScore": 63.8
+        },
+        {
+          "name": "wzl",
+          "points": 40100,
+          "rank": 1,
+          "finalScore": 25.1
+        },
+        {
+          "name": "ydy",
+          "points": 1400,
+          "rank": 2,
+          "finalScore": -33.6
+        },
+        {
+          "name": "sgc",
+          "points": -300,
+          "rank": 3,
+          "finalScore": -55.3
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/4/2 23:52:20",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 37000,
+          "rank": 0,
+          "finalScore": 42
+        },
+        {
+          "name": "ztq",
+          "points": 26200,
+          "rank": 1,
+          "finalScore": 11.2
+        },
+        {
+          "name": "zzy",
+          "points": 25300,
+          "rank": 2,
+          "finalScore": -9.7
+        },
+        {
+          "name": "ckh",
+          "points": 11500,
+          "rank": 3,
+          "finalScore": -43.5
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/4/2 23:52:54",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 35900,
+          "rank": 0,
+          "finalScore": 40.9
+        },
+        {
+          "name": "ckh",
+          "points": 24400,
+          "rank": 1,
+          "finalScore": 9.4
+        },
+        {
+          "name": "gy",
+          "points": 23500,
+          "rank": 2,
+          "finalScore": -11.5
+        },
+        {
+          "name": "wzl",
+          "points": 16200,
+          "rank": 3,
+          "finalScore": -38.8
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/4/4 23:00:18",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 46500,
+          "rank": 0,
+          "finalScore": 51.5
+        },
+        {
+          "name": "wkj",
+          "points": 39700,
+          "rank": 1,
+          "finalScore": 24.7
+        },
+        {
+          "name": "wzl",
+          "points": 14000,
+          "rank": 2,
+          "finalScore": -21
+        },
+        {
+          "name": "mqz",
+          "points": -200,
+          "rank": 3,
+          "finalScore": -55.2
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:37:08",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 62900,
+          "rank": 0,
+          "finalScore": 67.9
+        },
+        {
+          "name": "ztq",
+          "points": 24700,
+          "rank": 1,
+          "finalScore": 9.7
+        },
+        {
+          "name": "sgc",
+          "points": 17400,
+          "rank": 2,
+          "finalScore": -17.6
+        },
+        {
+          "name": "ywk",
+          "points": -5000,
+          "rank": 3,
+          "finalScore": -60
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:37:52",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 36600,
+          "rank": 0,
+          "finalScore": 41.6
+        },
+        {
+          "name": "sgc",
+          "points": 31400,
+          "rank": 1,
+          "finalScore": 16.4
+        },
+        {
+          "name": "ydy",
+          "points": 16900,
+          "rank": 2,
+          "finalScore": -18.1
+        },
+        {
+          "name": "ztq",
+          "points": 15100,
+          "rank": 3,
+          "finalScore": -39.9
+        }
+      ]
+    },
+    {
+      "type": "semesterSwitch",
+      "date": "2026/10/13 23:37:54",
+      "awards": {
+        "hasData": true,
+        "seasonMVP": {
+          "name": "wzl",
+          "totalScore": 310.5000000000001,
+          "firstCount": 7,
+          "fourthCount": 2,
+          "games": 16,
+          "avoidFourthRate": 0.875
+        },
+        "highestSingleGame": {
+          "name": "wzl",
+          "score": 67.9,
+          "points": 62900,
+          "date": "2026/10/13 23:37:08"
+        },
+        "bestAvoidFourth": {
+          "name": "ydy",
+          "totalScore": 99.9,
+          "firstCount": 2,
+          "fourthCount": 0,
+          "games": 6,
+          "avoidFourthRate": 1
+        },
+        "mostFirst": {
+          "name": "wzl",
+          "totalScore": 310.5000000000001,
+          "firstCount": 7,
+          "fourthCount": 2,
+          "games": 16,
+          "avoidFourthRate": 0.875
+        },
+        "gameCount": 19
+      }
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:39:17",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 33800,
+          "rank": 0,
+          "finalScore": 38.8
+        },
+        {
+          "name": "ydy",
+          "points": 32900,
+          "rank": 1,
+          "finalScore": 17.9
+        },
+        {
+          "name": "mqz",
+          "points": 27900,
+          "rank": 2,
+          "finalScore": -7.1
+        },
+        {
+          "name": "lsh",
+          "points": 5400,
+          "rank": 3,
+          "finalScore": -49.6
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:39:52",
+      "players": [
+        {
+          "name": "lyx",
+          "points": 44600,
+          "rank": 0,
+          "finalScore": 49.6
+        },
+        {
+          "name": "ydy",
+          "points": 39100,
+          "rank": 1,
+          "finalScore": 24.1
+        },
+        {
+          "name": "ztq",
+          "points": 16200,
+          "rank": 2,
+          "finalScore": -18.8
+        },
+        {
+          "name": "lsh",
+          "points": 100,
+          "rank": 3,
+          "finalScore": -54.9
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:40:15",
+      "players": [
+        {
+          "name": "lyx",
+          "points": 40100,
+          "rank": 0,
+          "finalScore": 45.1
+        },
+        {
+          "name": "wkj",
+          "points": 35800,
+          "rank": 1,
+          "finalScore": 20.8
+        },
+        {
+          "name": "ztq",
+          "points": 18400,
+          "rank": 2,
+          "finalScore": -16.6
+        },
+        {
+          "name": "lsh",
+          "points": 5700,
+          "rank": 3,
+          "finalScore": -49.3
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:40:46",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 45100,
+          "rank": 0,
+          "finalScore": 50.1
+        },
+        {
+          "name": "lyx",
+          "points": 37300,
+          "rank": 1,
+          "finalScore": 22.3
+        },
+        {
+          "name": "ztq",
+          "points": 16600,
+          "rank": 2,
+          "finalScore": -18.4
+        },
+        {
+          "name": "ss",
+          "points": 1000,
+          "rank": 3,
+          "finalScore": -54
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:41:05",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 35000,
+          "rank": 0,
+          "finalScore": 40
+        },
+        {
+          "name": "ydy",
+          "points": 30200,
+          "rank": 1,
+          "finalScore": 15.2
+        },
+        {
+          "name": "sgc",
+          "points": 20500,
+          "rank": 2,
+          "finalScore": -14.5
+        },
+        {
+          "name": "wzl",
+          "points": 14300,
+          "rank": 3,
+          "finalScore": -40.7
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:41:19",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 41600,
+          "rank": 0,
+          "finalScore": 46.6
+        },
+        {
+          "name": "cyz",
+          "points": 23500,
+          "rank": 1,
+          "finalScore": 8.5
+        },
+        {
+          "name": "qzy",
+          "points": 19200,
+          "rank": 2,
+          "finalScore": -15.8
+        },
+        {
+          "name": "wzl",
+          "points": 15700,
+          "rank": 3,
+          "finalScore": -39.3
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:41:34",
+      "players": [
+        {
+          "name": "cyz",
+          "points": 40400,
+          "rank": 0,
+          "finalScore": 45.4
+        },
+        {
+          "name": "wzl",
+          "points": 33300,
+          "rank": 1,
+          "finalScore": 18.3
+        },
+        {
+          "name": "qzy",
+          "points": 17300,
+          "rank": 2,
+          "finalScore": -17.7
+        },
+        {
+          "name": "ztq",
+          "points": 9000,
+          "rank": 3,
+          "finalScore": -46
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:41:49",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 37600,
+          "rank": 0,
+          "finalScore": 42.6
+        },
+        {
+          "name": "qzy",
+          "points": 30200,
+          "rank": 1,
+          "finalScore": 15.2
+        },
+        {
+          "name": "ztq",
+          "points": 23200,
+          "rank": 2,
+          "finalScore": -11.8
+        },
+        {
+          "name": "cyz",
+          "points": 9000,
+          "rank": 3,
+          "finalScore": -46
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:42:13",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 39700,
+          "rank": 0,
+          "finalScore": 44.7
+        },
+        {
+          "name": "mqz",
+          "points": 26700,
+          "rank": 1,
+          "finalScore": 11.7
+        },
+        {
+          "name": "ztq",
+          "points": 18100,
+          "rank": 2,
+          "finalScore": -16.9
+        },
+        {
+          "name": "wzl",
+          "points": 15500,
+          "rank": 3,
+          "finalScore": -39.5
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:42:27",
+      "players": [
+        {
+          "name": "ztq",
+          "points": 44900,
+          "rank": 0,
+          "finalScore": 49.9
+        },
+        {
+          "name": "qzy",
+          "points": 29500,
+          "rank": 1,
+          "finalScore": 14.5
+        },
+        {
+          "name": "wzl",
+          "points": 15500,
+          "rank": 2,
+          "finalScore": -19.5
+        },
+        {
+          "name": "mqz",
+          "points": 10100,
+          "rank": 3,
+          "finalScore": -44.9
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:42:42",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 66600,
+          "rank": 0,
+          "finalScore": 71.6
+        },
+        {
+          "name": "wzl",
+          "points": 34000,
+          "rank": 1,
+          "finalScore": 19
+        },
+        {
+          "name": "ztq",
+          "points": 14100,
+          "rank": 2,
+          "finalScore": -20.9
+        },
+        {
+          "name": "mqz",
+          "points": -14700,
+          "rank": 3,
+          "finalScore": -69.7
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:43:01",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 58600,
+          "rank": 0,
+          "finalScore": 63.6
+        },
+        {
+          "name": "mqz",
+          "points": 21500,
+          "rank": 1,
+          "finalScore": 6.5
+        },
+        {
+          "name": "lyx",
+          "points": 18200,
+          "rank": 2,
+          "finalScore": -16.8
+        },
+        {
+          "name": "ztq",
+          "points": 1700,
+          "rank": 3,
+          "finalScore": -53.3
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/13 23:43:16",
+      "players": [
+        {
+          "name": "mqz",
+          "points": 31400,
+          "rank": 0,
+          "finalScore": 36.4
+        },
+        {
+          "name": "wzl",
+          "points": 26700,
+          "rank": 1,
+          "finalScore": 11.7
+        },
+        {
+          "name": "ztq",
+          "points": 22200,
+          "rank": 2,
+          "finalScore": -12.8
+        },
+        {
+          "name": "lyx",
+          "points": 19700,
+          "rank": 3,
+          "finalScore": -35.3
+        }
+      ]
+    }
+  ],
+  "statistics": {
+    "ztq": {
+      "totalScore": -92.2,
+      "ranks": [
+        13,
+        7,
+        18,
+        11
+      ],
+      "games": 49
+    },
+    "wzl": {
+      "totalScore": 280.9,
+      "ranks": [
+        15,
+        17,
+        7,
+        7
+      ],
+      "games": 46
+    },
+    "gy": {
+      "totalScore": -58.6,
+      "ranks": [
+        0,
+        0,
+        6,
+        1
+      ],
+      "games": 7
+    },
+    "wkj": {
+      "totalScore": 70,
+      "ranks": [
+        2,
+        5,
+        2,
+        1
+      ],
+      "games": 10
+    },
+    "qzy": {
+      "totalScore": 153.7,
+      "ranks": [
+        11,
+        4,
+        7,
+        5
+      ],
+      "games": 27
+    },
+    "lsh": {
+      "totalScore": -184.7,
+      "ranks": [
+        1,
+        1,
+        1,
+        7
+      ],
+      "games": 10
+    },
+    "sgc": {
+      "totalScore": -87.9,
+      "ranks": [
+        2,
+        4,
+        5,
+        5
+      ],
+      "games": 16
+    },
+    "cyz": {
+      "totalScore": -19.3,
+      "ranks": [
+        3,
+        3,
+        0,
+        6
+      ],
+      "games": 12
+    },
+    "ydy": {
+      "totalScore": 117.6,
+      "ranks": [
+        2,
+        8,
+        3,
+        0
+      ],
+      "games": 13
+    },
+    "ywk": {
+      "totalScore": -30.3,
+      "ranks": [
+        0,
+        2,
+        1,
+        1
+      ],
+      "games": 4
+    },
+    "ftl": {
+      "totalScore": -14.9,
+      "ranks": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "games": 1
+    },
+    "yy": {
+      "totalScore": -14.1,
+      "ranks": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "games": 1
+    },
+    "mqz": {
+      "totalScore": -99.1,
+      "ranks": [
+        2,
+        2,
+        1,
+        4
+      ],
+      "games": 9
+    },
+    "wyc": {
+      "totalScore": -34.7,
+      "ranks": [
+        1,
+        0,
+        1,
+        2
+      ],
+      "games": 4
+    },
+    "ldt": {
+      "totalScore": 26.7,
+      "ranks": [
+        1,
+        1,
+        2,
+        0
+      ],
+      "games": 4
+    },
+    "lc": {
+      "totalScore": -57.1,
+      "ranks": [
+        0,
+        0,
+        0,
+        2
+      ],
+      "games": 2
+    },
+    "ss": {
+      "totalScore": -21.6,
+      "ranks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "games": 4
+    },
+    "ckh": {
+      "totalScore": 5.6,
+      "ranks": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "games": 3
+    },
+    "zzy": {
+      "totalScore": -4.8,
+      "ranks": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "games": 1
+    },
+    "lyx": {
+      "totalScore": 64.9,
+      "ranks": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "games": 5
+    }
+  }
+}
