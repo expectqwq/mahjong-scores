@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026/10/13 23:43:19",
+  "exportDate": "2026/10/19 00:16:56",
   "records": [
     {
       "date": "2025/10/18 00:41:28",
@@ -1761,28 +1761,88 @@
           "finalScore": -35.3
         }
       ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/19 00:16:56",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 50000,
+          "rank": 0,
+          "finalScore": 55
+        },
+        {
+          "name": "ztq",
+          "points": 22500,
+          "rank": 1,
+          "finalScore": 7.5
+        },
+        {
+          "name": "qzy",
+          "points": 16300,
+          "rank": 2,
+          "finalScore": -18.7
+        },
+        {
+          "name": "sgc",
+          "points": 11200,
+          "rank": 3,
+          "finalScore": -43.8
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/19 00:16:56",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 38000,
+          "rank": 0,
+          "finalScore": 43
+        },
+        {
+          "name": "wzl",
+          "points": 25400,
+          "rank": 1,
+          "finalScore": 10.4
+        },
+        {
+          "name": "ztq",
+          "points": 18600,
+          "rank": 2,
+          "finalScore": -16.4
+        },
+        {
+          "name": "sgc",
+          "points": 18000,
+          "rank": 3,
+          "finalScore": -37
+        }
+      ]
     }
   ],
   "statistics": {
     "ztq": {
-      "totalScore": -92.2,
+      "totalScore": -101.1,
       "ranks": [
         13,
-        7,
-        18,
+        8,
+        19,
         11
       ],
-      "games": 49
+      "games": 51
     },
     "wzl": {
-      "totalScore": 280.9,
+      "totalScore": 346.3,
       "ranks": [
-        15,
-        17,
+        16,
+        18,
         7,
         7
       ],
-      "games": 46
+      "games": 48
     },
     "gy": {
       "totalScore": -58.6,
@@ -1805,14 +1865,14 @@
       "games": 10
     },
     "qzy": {
-      "totalScore": 153.7,
+      "totalScore": 178,
       "ranks": [
-        11,
+        12,
         4,
-        7,
+        8,
         5
       ],
-      "games": 27
+      "games": 29
     },
     "lsh": {
       "totalScore": -184.7,
@@ -1825,14 +1885,14 @@
       "games": 10
     },
     "sgc": {
-      "totalScore": -87.9,
+      "totalScore": -168.7,
       "ranks": [
         2,
         4,
         5,
-        5
+        7
       ],
-      "games": 16
+      "games": 18
     },
     "cyz": {
       "totalScore": -19.3,
