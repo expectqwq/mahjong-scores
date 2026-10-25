@@ -223,11 +223,13 @@
         .metric-value { color: #354792; font-size: 1.55em; font-weight: bold; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
         .metric-note { color: #666; font-size: .8em; line-height: 1.5; margin-top: 7px; }
         .rank-distribution { margin-bottom: 24px; }
-        .rank-bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
-        .rank-bar-row { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 8px; align-items: center; font-size: .9em; }
-        .rank-bar-track { height: 12px; background: #edf0f7; border-radius: 6px; overflow: hidden; }
-        .rank-bar-fill { height: 100%; border-radius: 6px; }
-        .trend-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+        .rank-stack { display: flex; height: 24px; width: 100%; border-radius: 8px; overflow: hidden; background: #edf0f7; }
+        .rank-segment { flex-shrink: 0; height: 100%; }
+        .rank-legend { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+        .rank-legend-item { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: .9em; }
+        .rank-swatch { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+        .rank-summary { margin: 10px 0 0; color: #666; font-size: .8em; line-height: 1.5; }
+        .trend-grid { display: grid; grid-template-columns: minmax(0, 1fr); margin-bottom: 20px; }
         .trend-card { min-width: 0; border: 1px solid #e4e7f0; border-radius: 10px; padding: 16px 12px 12px; }
         .trend-card figcaption { padding: 0 6px 12px; font-size: 1.05em; font-weight: bold; color: #424b63; }
         .trend-card figcaption span { display: inline-block; font-size: .78em; font-weight: normal; color: #737b8b; margin-left: 6px; }
@@ -235,24 +237,12 @@
         .chart-point { cursor: pointer; outline: none; }
         .chart-point:focus circle, .chart-point:hover circle, .chart-point.is-selected circle { stroke: #172658; stroke-width: 3; }
         .chart-info { margin: 8px 6px 0; min-height: 42px; font-size: .8em; line-height: 1.6; color: #666; }
-        .detail-fold { border: 1px solid #e4e7f0; border-radius: 8px; margin-top: 12px; padding: 14px 16px; }
-        .detail-fold summary { color: #4054b4; font-weight: bold; cursor: pointer; line-height: 1.5; }
-        .detail-fold[open] summary { margin-bottom: 16px; }
-        .detail-fold .stats-note { font-size: .88em; }
-        .detail-wide-table { min-width: 700px; font-size: .9em; }
-        .detail-wide-table th, .detail-wide-table td { padding: 12px 10px; }
-        .detail-wide-table th { font-size: 1em; }
-        .detail-table-scroll { max-height: 440px; }
-        .detail-wide-table thead { position: sticky; top: 0; }
-        .extra-metrics { margin-bottom: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .extra-metrics .metric-value { font-size: 1.25em; }
         @media (max-width: 768px) {
             .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
             .metric-card { padding: 12px; }
             .metric-value { font-size: 1.3em; }
-            .trend-grid, .rank-bars { grid-template-columns: 1fr; }
+            .rank-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .trend-card { padding: 14px 8px 8px; }
-            .detail-fold { padding: 12px; }
             .section-nav { gap: 6px; }
             .section-nav a { padding: 8px 10px; font-size: .88em; }
         }
@@ -262,6 +252,9 @@
 </head>
 <body>
     <div class="container">
+        <nav class="section-nav" aria-label="统计导航">
+            <a href="#rankingSection">排行榜</a><a href="#playerDetails">选手查询</a><a href="#pairSection">同桌分数差</a><a href="#historySection">历史记录</a>
+        </nav>
         <h1>🀄 304麻将积分查询</h1>
         <p id="dataStatus" class="stats-note" style="text-align: center;" role="status">正在加载比赛记录…</p>
         
@@ -296,9 +289,6 @@
         </div>
 
         <!-- PLAYER_DETAILS_START -->
-        <nav class="section-nav" aria-label="统计导航">
-            <a href="#playerDetails">选手查询</a><a href="#rankingSection">排行榜</a><a href="#pairSection">同桌分数差</a><a href="#historySection">历史记录</a>
-        </nav>
         <section class="stats-section player-details" id="playerDetails" aria-labelledby="playerDetailsTitle">
             <h2 id="playerDetailsTitle">📈 选手详情</h2>
             <div class="stats-toolbar">
@@ -309,11 +299,11 @@
             </div>
             <p id="playerDetailSummary" class="stats-note" aria-live="polite">暂无选手数据。</p>
             <div id="playerDetailBody" hidden>
-                <p class="stats-note detail-method">以下表现指标按逐场记录计算，跨学期不减半。素点得失以 25,000 点为起点；场均得分含顺位分及违规扣分。</p>
+                <p class="stats-note detail-method">表现指标按逐场记录计算，跨学期不减半；累计积分沿用换学期减半规则。素点得失以 25,000 点为起点；场均得分含顺位分及违规扣分。</p>
                 <div id="playerMetricCards" class="metric-grid"></div>
                 <div class="rank-distribution">
                     <h3>位次分布</h3>
-                    <div id="playerRankDistribution" class="rank-bars"></div>
+                    <div id="playerRankDistribution"></div>
                 </div>
                 <p id="playerTrendSummary" class="stats-note"></p>
                 <div class="trend-grid">
@@ -322,34 +312,7 @@
                         <div id="playerRankChart" class="trend-chart"></div>
                         <p id="playerRankChartInfo" class="chart-info" aria-live="polite"></p>
                     </figure>
-                    <figure class="trend-card">
-                        <figcaption>最近十场得分 <span>含违规扣分</span></figcaption>
-                        <div id="playerScoreChart" class="trend-chart"></div>
-                        <p id="playerScoreChartInfo" class="chart-info" aria-live="polite"></p>
-                    </figure>
                 </div>
-                <details class="detail-fold">
-                    <summary>近期表现、个人纪录与扣分统计</summary>
-                    <p class="stats-note">最近 10／20 场从所选范围内截取，不足时按实际场次计算。连续纪录按本人参赛顺序计算。</p>
-                    <div class="table-scroll">
-                        <table class="detail-wide-table"><thead><tr><th>近期窗口</th><th>实际场次</th><th>平均顺位</th><th>场均得分</th><th>一位率</th><th>连对率</th><th>避四率</th></tr></thead><tbody id="playerRecentBody"></tbody></table>
-                    </div>
-                    <div id="playerExtraMetrics" class="metric-grid extra-metrics"></div>
-                </details>
-                <details class="detail-fold">
-                    <summary>对手表现（所有学期）</summary>
-                    <p class="stats-note">固定统计所有学期，不受本栏学期筛选影响。分差按所选选手减去对手的最终得分计算，含违规扣分。</p>
-                    <div class="table-scroll detail-table-scroll">
-                        <table class="detail-wide-table"><thead><tr><th>对手</th><th>同桌场次</th><th>累计分差</th><th>场均分差</th><th>顺位领先率</th><th>领先／落后／并列</th></tr></thead><tbody id="playerOpponentBody"></tbody></table>
-                    </div>
-                </details>
-                <details class="detail-fold">
-                    <summary id="playerGamesTitle">个人对局明细</summary>
-                    <p class="stats-note">按最新到最早排列。场次编号沿用全部历史记录；得分栏显示扣罚前得分及扣分标记。</p>
-                    <div class="table-scroll detail-table-scroll">
-                        <table class="detail-wide-table"><thead><tr><th>场次／学期</th><th>记录时间</th><th>同桌选手</th><th>终局点数</th><th>顺位</th><th>得分</th></tr></thead><tbody id="playerGamesBody"></tbody></table>
-                    </div>
-                </details>
             </div>
         </section>
         <!-- PLAYER_DETAILS_END -->
@@ -562,16 +525,12 @@
         function calculatePlayerMetrics(entries) {
             const result = {
                 games: entries.length, ranks: [0, 0, 0, 0], totalScore: 0, totalPenalty: 0,
-                penaltyGames: 0, aboveBase: 0, positiveScore: 0, negativePoints: 0,
-                averageRank: null, averagePoints: null, averageRawGain: null,
-                averageScore: null, averageBaseScore: null, scoreStdDev: null,
-                maxPoints: null, minPoints: null, maxScore: null, minScore: null,
-                longestFirst: 0, longestTopTwo: 0, longestAvoidFourth: 0
+                penaltyGames: 0, negativePoints: 0, averageRank: null, averageRawGain: null,
+                averageScore: null, averageBaseScore: null, longestTopTwo: 0
             };
             let pointSum = 0;
             let rankSum = 0;
-            const streaks = [0, 0, 0];
-            const longest = [0, 0, 0];
+            let topTwoStreak = 0;
             entries.forEach(({ player }) => {
                 result.ranks[player.rank]++;
                 rankSum += player.rank + 1;
@@ -580,49 +539,17 @@
                 result.totalScore += player.finalScore;
                 result.totalPenalty += player.penalty ?? 0;
                 if ((player.penalty ?? 0) < 0) result.penaltyGames++;
-                if (player.points > 25000) result.aboveBase++;
-                if (player.finalScore > 0) result.positiveScore++;
                 if (player.points < 0) result.negativePoints++;
-                result.maxPoints = result.maxPoints === null ? player.points : Math.max(result.maxPoints, player.points);
-                result.minPoints = result.minPoints === null ? player.points : Math.min(result.minPoints, player.points);
-                result.maxScore = result.maxScore === null ? player.finalScore : Math.max(result.maxScore, player.finalScore);
-                result.minScore = result.minScore === null ? player.finalScore : Math.min(result.minScore, player.finalScore);
-                [player.rank === 0, player.rank < 2, player.rank < 3].forEach((hit, index) => {
-                    streaks[index] = hit ? streaks[index] + 1 : 0;
-                    longest[index] = Math.max(longest[index], streaks[index]);
-                });
+                topTwoStreak = player.rank < 2 ? topTwoStreak + 1 : 0;
+                result.longestTopTwo = Math.max(result.longestTopTwo, topTwoStreak);
             });
             if (result.games) {
                 result.averageRank = rankSum / result.games;
-                result.averagePoints = pointSum / result.games;
                 result.averageRawGain = (pointSum - 25000 * result.games) / result.games;
                 result.averageScore = result.totalScore / result.games;
                 result.averageBaseScore = (result.totalScore - result.totalPenalty) / result.games;
-                if (result.games > 1) {
-                    result.scoreStdDev = Math.sqrt(entries.reduce((sum, { player }) => sum + (player.finalScore - result.averageScore) ** 2, 0) / result.games);
-                }
             }
-            [result.longestFirst, result.longestTopTwo, result.longestAvoidFourth] = longest;
             return result;
-        }
-
-        function calculatePlayerOpponents(records, name) {
-            const opponents = new Map();
-            getPlayerGames(records, name).forEach(({ record, player }) => {
-                record.players.forEach(other => {
-                    if (other.name === name) return;
-                    if (!opponents.has(other.name)) opponents.set(other.name, {
-                        name: other.name, games: 0, scoreDifference: 0, ahead: 0, behind: 0, tied: 0
-                    });
-                    const item = opponents.get(other.name);
-                    item.games++;
-                    item.scoreDifference = roundToOneDecimal(item.scoreDifference + player.finalScore - other.finalScore) || 0;
-                    if (player.rank < other.rank) item.ahead++;
-                    else if (player.rank > other.rank) item.behind++;
-                    else item.tied++;
-                });
-            });
-            return [...opponents.values()].sort((a, b) => b.games - a.games || a.name.localeCompare(b.name, 'zh-CN'));
         }
 
         function detailNumber(value, digits = 1, signed = false) {
@@ -685,52 +612,33 @@
                 ['平均顺位', detailNumber(metrics.averageRank, 2), '一至四位的平均值，越低越好'],
                 ['平均素点得失', detailNumber(metrics.averageRawGain, 1, true), '单位：点；终局点数 − 25,000'],
                 ['场均得分', detailNumber(metrics.averageScore, 2, true), '单位：分；含顺位分及违规扣分'],
-                ['范围内总得分', detailNumber(metrics.totalScore, 1, true), '逐场得分之和，跨学期不减半']
-            ]);
-            const rankColors = ['#b38a19', '#6c7c98', '#b57c51', '#8b6bb4'];
-            document.getElementById('playerRankDistribution').innerHTML = metrics.ranks.map((count, index) =>
-                `<div class="rank-bar-row"><span>${index + 1} 位</span><div class="rank-bar-track" aria-hidden="true"><div class="rank-bar-fill" style="width:${n ? count / n * 100 : 0}%;background:${rankColors[index]}"></div></div><span>${detailRate(count, n)}</span></div>`
-            ).join('');
-            document.getElementById('playerTrendSummary').textContent = `${scope}内最近 ${Math.min(10, n)} 场 · 从早到晚排列；点击图上的点查看单场信息。`;
-            updatePlayerCharts(entries);
-            document.getElementById('playerRecentBody').innerHTML = [10, 20].map(size => {
-                const recent = calculatePlayerMetrics(entries.slice(-size));
-                return `<tr><td>最近 ${size} 场</td><td>${recent.games}</td><td>${detailNumber(recent.averageRank, 2)}</td><td>${detailNumber(recent.averageScore, 2, true)}</td><td>${detailRate(recent.ranks[0], recent.games)}</td><td>${detailRate(recent.ranks[0] + recent.ranks[1], recent.games)}</td><td>${detailRate(recent.games - recent.ranks[3], recent.games)}</td></tr>`;
-            }).join('');
-            renderMetricCards('playerExtraMetrics', [
+                ['范围内总得分', detailNumber(metrics.totalScore, 1, true), '逐场得分之和，跨学期不减半'],
                 ['当前累计积分（所有学期）', detailNumber(playerStats[name].totalScore, 1, true), '与排行榜一致，沿用换学期减半规则'],
-                ['平均终局点数', detailNumber(metrics.averagePoints), '单位：点'],
-                ['原点以上率', detailRate(metrics.aboveBase, n), '终局点数严格大于 25,000 点'],
-                ['正得分率', detailRate(metrics.positiveScore, n), '最终得分严格大于 0 分，含扣罚'],
-                ['负点结束率', detailRate(metrics.negativePoints, n), '终局点数小于 0；不推断是否提前结束'],
-                ['得分波动（标准差）', detailNumber(metrics.scoreStdDev, 2), '当前样本的总体标准差；不足 2 场不显示'],
-                ['最高终局点数', detailNumber(metrics.maxPoints, 0), '单位：点'],
-                ['最低终局点数', detailNumber(metrics.minPoints, 0), '单位：点'],
-                ['单场最高得分', detailNumber(metrics.maxScore, 1, true), '含顺位分及违规扣分'],
-                ['单场最低得分', detailNumber(metrics.minScore, 1, true), '含顺位分及违规扣分'],
-                ['最长连续一位', `${metrics.longestFirst} 场`, '按本人参赛顺序计算'],
+                ['被飞率', rateValue(metrics.negativePoints), `${metrics.negativePoints} / ${n} 场终局点数小于 0`],
                 ['最长连续前二', `${metrics.longestTopTwo} 场`, '按本人参赛顺序计算'],
-                ['最长连续避四', `${metrics.longestAvoidFourth} 场`, '按本人参赛顺序计算'],
                 ['违规扣分', `${detailNumber(metrics.totalPenalty)} 分 / ${metrics.penaltyGames} 场`, '仅统计已标记的违规扣分'],
                 ['扣罚前场均得分', detailNumber(metrics.averageBaseScore, 2, true), '在最终得分中还原已标记的违规扣分']
             ]);
-            document.getElementById('playerOpponentBody').innerHTML = calculatePlayerOpponents(gameRecords, name).map(item =>
-                `<tr><td>${escapeHtml(item.name)}</td><td>${item.games}</td><td>${detailNumber(item.scoreDifference, 1, true)}</td><td>${detailNumber(item.scoreDifference / item.games, 2, true)}</td><td>${detailRate(item.ahead, item.games)}</td><td>${item.ahead} / ${item.behind} / ${item.tied}</td></tr>`
-            ).join('') || '<tr><td colspan="6" class="empty-state">暂无同桌记录。</td></tr>';
-            document.getElementById('playerGamesTitle').textContent = `个人对局明细（${scope} · ${n} 场）`;
-            document.getElementById('playerGamesBody').innerHTML = [...entries].reverse().map(({ gameNumber, semester, record, player }) =>
-                `<tr><td>第 ${gameNumber} 局 / 第 ${semester} 学期</td><td>${escapeHtml(record.date)}</td><td>${record.players.filter(other => other.name !== name).map(other => escapeHtml(other.name)).join('、')}</td><td>${detailNumber(player.points, 0)}</td><td>${player.rank + 1} 位</td><td>${formatGameScore(player)}</td></tr>`
-            ).join('') || '<tr><td colspan="6" class="empty-state">该选手在此范围暂无对局。</td></tr>';
+            const rankColors = ['#b38a19', '#6c7c98', '#b57c51', '#8b6bb4'];
+            const rankLabels = metrics.ranks.map((count, index) => `${index + 1} 位：${detailRate(count, n)}`);
+            const segments = metrics.ranks.map((count, index) =>
+                `<div class="rank-segment" style="width:${n ? count / n * 100 : 0}%;background:${rankColors[index]}" title="${rankLabels[index]}"></div>`
+            ).join('');
+            const legend = metrics.ranks.map((count, index) =>
+                `<div class="rank-legend-item"><span class="rank-swatch" style="background:${rankColors[index]}" aria-hidden="true"></span><span>${index + 1} 位</span><span>${detailRate(count, n)}</span></div>`
+            ).join('');
+            document.getElementById('playerRankDistribution').innerHTML = `<div class="rank-stack" role="img" aria-label="${rankLabels.join('；')}">${segments}</div><div class="rank-legend">${legend}</div><p class="rank-summary">${n ? `共 ${n} 场 · 条形合计 100%；显示百分比经四舍五入。` : '暂无对局'}</p>`;
+            document.getElementById('playerTrendSummary').textContent = `${scope}内最近 ${Math.min(10, n)} 场 · 从早到晚排列；点击图上的点查看单场信息。`;
+            updatePlayerCharts(entries);
         }
 
         function updatePlayerCharts(entries) {
             if (!entries) entries = getPlayerGames(gameRecords, document.getElementById('detailPlayer').value, document.getElementById('detailSemester').value);
             const recent = entries.slice(-10);
-            renderPlayerTrend('playerRankChart', 'playerRankChartInfo', recent, 'rank');
-            renderPlayerTrend('playerScoreChart', 'playerScoreChartInfo', recent, 'score');
+            renderPlayerTrend('playerRankChart', 'playerRankChartInfo', recent);
         }
 
-        function renderPlayerTrend(containerId, infoId, entries, kind) {
+        function renderPlayerTrend(containerId, infoId, entries) {
             const container = document.getElementById(containerId);
             const info = document.getElementById(infoId);
             if (!entries.length) {
@@ -738,39 +646,25 @@
                 info.textContent = '';
                 return;
             }
-            const isRank = kind === 'rank';
-            const values = entries.map(({ player }) => isRank ? player.rank + 1 : player.finalScore);
-            const width = Math.max(240, Math.min(600, container.clientWidth || 480));
+            const values = entries.map(({ player }) => player.rank + 1);
+            const width = Math.max(240, container.clientWidth || 480);
             const height = 240;
-            const left = isRank ? 35 : 44;
+            const left = 35;
             const right = width - 20;
             const top = 20;
             const bottom = 190;
-            let ticks;
-            let y;
-            if (isRank) {
-                ticks = [1, 2, 3, 4];
-                y = value => top + (value - 1) / 3 * (bottom - top);
-            } else {
-                const low = Math.min(0, ...values);
-                const high = Math.max(0, ...values);
-                const step = Math.max(5, Math.ceil((high - low) / 4 / 5) * 5);
-                let min = Math.floor(low / step) * step;
-                let max = Math.ceil(high / step) * step;
-                if (min === max) { min -= step; max += step; }
-                ticks = Array.from({ length: Math.round((max - min) / step) + 1 }, (_, index) => min + index * step);
-                y = value => bottom - (value - min) / (max - min) * (bottom - top);
-            }
+            const ticks = [1, 2, 3, 4];
+            const y = value => top + (value - 1) / 3 * (bottom - top);
             const x = index => entries.length === 1 ? (left + right) / 2 : left + index / (entries.length - 1) * (right - left);
             const description = index => {
                 const { gameNumber, semester, record, player } = entries[index];
                 const penalty = player.penalty ? `（违规扣分 ${detailNumber(player.penalty)}，已计入）` : '';
                 return `第 ${gameNumber} 局 · 第 ${semester} 学期 · ${record.date} · ${player.rank + 1} 位 · ${detailNumber(player.points, 0)} 点 · 得分 ${detailNumber(player.finalScore, 1, true)}${penalty}`;
             };
-            const grid = ticks.map(tick => `<line x1="${left}" y1="${y(tick)}" x2="${right}" y2="${y(tick)}" stroke="${!isRank && tick === 0 ? '#a5adc2' : '#e6e9f2'}"/><text x="${left - 9}" y="${y(tick) + 4}" text-anchor="end" font-size="12" fill="#606a80">${tick}${isRank ? '位' : ''}</text>`).join('');
+            const grid = ticks.map(tick => `<line x1="${left}" y1="${y(tick)}" x2="${right}" y2="${y(tick)}" stroke="#e6e9f2"/><text x="${left - 9}" y="${y(tick) + 4}" text-anchor="end" font-size="12" fill="#606a80">${tick}位</text>`).join('');
             const line = entries.length > 1 ? `<polyline points="${values.map((value, index) => `${x(index)},${y(value)}`).join(' ')}" fill="none" stroke="#6672d7" stroke-width="2.5" stroke-linejoin="round"/>` : '';
-            const points = values.map((value, index) => `<g class="chart-point" role="button" tabindex="0" data-index="${index}" aria-label="${escapeHtml(description(index))}"><title>${escapeHtml(description(index))}</title><circle cx="${x(index)}" cy="${y(value)}" r="6" fill="${!isRank && value < 0 ? '#b96a76' : '#6672d7'}" stroke="white" stroke-width="2"/></g><text x="${x(index)}" y="${bottom + 20}" text-anchor="middle" font-size="11" fill="#606a80">${entries[index].gameNumber}</text>`).join('');
-            container.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="${containerId}Title ${containerId}Desc"><title id="${containerId}Title">最近 ${entries.length} 场${isRank ? '顺位' : '得分'}折线图</title><desc id="${containerId}Desc">横轴为全站场次，从早到晚。${isRank ? '纵轴从上到下为一至四位。' : '纵轴为含违规扣分的最终得分。'}可聚焦或点击各点查看详情。</desc>${grid}${line}${points}<text x="${(left + right) / 2}" y="232" text-anchor="middle" font-size="11" fill="#737b8b">全站场次（从早到晚）</text></svg>`;
+            const points = values.map((value, index) => `<g class="chart-point" role="button" tabindex="0" data-index="${index}" aria-label="${escapeHtml(description(index))}"><title>${escapeHtml(description(index))}</title><circle cx="${x(index)}" cy="${y(value)}" r="6" fill="#6672d7" stroke="white" stroke-width="2"/></g><text x="${x(index)}" y="${bottom + 20}" text-anchor="middle" font-size="11" fill="#606a80">${entries[index].gameNumber}</text>`).join('');
+            container.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="group" aria-labelledby="${containerId}Title ${containerId}Desc"><title id="${containerId}Title">最近 ${entries.length} 场顺位折线图</title><desc id="${containerId}Desc">横轴为全站场次，从早到晚。纵轴从上到下为一至四位。可聚焦或点击各点查看详情。</desc>${grid}${line}${points}<text x="${(left + right) / 2}" y="232" text-anchor="middle" font-size="11" fill="#737b8b">全站场次（从早到晚）</text></svg>`;
             const selectPoint = index => {
                 info.textContent = description(index);
                 container.querySelectorAll('.chart-point').forEach(point => {

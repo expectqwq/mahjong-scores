@@ -8,7 +8,7 @@ const html = fs.readFileSync(process.argv[2] || path.join(root, 'index.html'), '
 const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 const context = vm.createContext({ window: { addEventListener() {} } });
 vm.runInContext(script, context);
-const api = vm.runInContext('({getPlayerGames, calculatePlayerMetrics, calculatePlayerOpponents, calculatePlayerStats, calculatePairStats})', context);
+const api = vm.runInContext('({getPlayerGames, calculatePlayerMetrics, calculatePlayerStats, calculatePairStats})', context);
 const plain = value => JSON.parse(JSON.stringify(value));
 const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1e-8, `${label}: ${actual} != ${expected}`);
 
@@ -28,24 +28,19 @@ assert.deepEqual(plain(entries.map(e => [e.gameNumber, e.semester])), [[1, 1], [
 const metrics = api.calculatePlayerMetrics(entries);
 assert.deepEqual(plain(metrics.ranks), [2, 1, 0, 1]);
 for (const [key, expected] of Object.entries({
-  games: 4, totalScore: 20, totalPenalty: -20, penaltyGames: 1, aboveBase: 3,
-  positiveScore: 2, negativePoints: 1, averageRank: 2, averagePoints: 25000,
+  games: 4, totalScore: 20, totalPenalty: -20, penaltyGames: 1,
+  negativePoints: 1, averageRank: 2,
   averageRawGain: 0, averageScore: 5, averageBaseScore: 10,
-  maxPoints: 40000, minPoints: -1000, maxScore: 45, minScore: -56,
-  longestFirst: 1, longestTopTwo: 2, longestAvoidFourth: 2
+  longestTopTwo: 2
 })) near(metrics[key], expected, key);
-near(metrics.scoreStdDev, Math.sqrt(1685.5), 'population deviation');
 assert.equal(api.calculatePlayerStats(fixture, true).A.totalScore, 2);
 assert.equal(api.calculatePlayerMetrics(api.getPlayerGames(fixture, 'A', '1')).totalScore, 36);
 assert.equal(api.calculatePlayerMetrics(api.getPlayerGames(fixture, 'A', '2')).totalScore, -16);
-assert.deepEqual(plain(api.calculatePlayerOpponents(fixture, 'A')), [{ name: 'B', games: 4, scoreDifference: 5, ahead: 2, behind: 1, tied: 1 }]);
+assert.equal(api.calculatePairStats(fixture)['["A","B"]'].scoreDifference, 5);
 const empty = api.calculatePlayerMetrics(api.getPlayerGames(fixture, 'missing'));
 assert.equal(empty.games, 0);
-for (const key of ['averageRank', 'averagePoints', 'averageRawGain', 'averageScore', 'scoreStdDev', 'maxScore', 'minPoints']) assert.equal(empty[key], null);
-assert.equal(api.calculatePlayerMetrics(entries.slice(0, 1)).scoreStdDev, null);
+for (const key of ['averageRank', 'averageRawGain', 'averageScore', 'averageBaseScore']) assert.equal(empty[key], null);
 const exactlyBase = api.calculatePlayerMetrics([{ player: player('A', 25000, 2, 0) }]);
-assert.equal(exactlyBase.aboveBase, 0);
-assert.equal(exactlyBase.positiveScore, 0);
 assert.equal(exactlyBase.negativePoints, 0);
 
 // Build an independent per-player/per-term ledger from the real export.
@@ -62,13 +57,12 @@ for (const record of records) {
   }
 }
 assert.equal([...ledger.values()].reduce((total, observations) => total + observations.length, 0), gameNumber * 4);
-const pairs = api.calculatePairStats(records);
 for (const [name, observations] of ledger) {
   for (const scope of ['all', ...Array.from({ length: semester + 1 }, (_, index) => String(index + 1))]) {
     const expected = observations.filter(p => scope === 'all' || String(p.semester) === scope);
     const actualEntries = api.getPlayerGames(records, name, scope);
     assert.deepEqual(plain(actualEntries.map(e => e.gameNumber)), expected.map(p => p.gameNumber));
-    for (const size of [null, 10, 20]) {
+    for (const size of [null, 10]) {
       const selected = size ? expected.slice(-size) : expected;
       const actual = api.calculatePlayerMetrics(size ? actualEntries.slice(-size) : actualEntries);
       const n = selected.length;
@@ -81,12 +75,6 @@ for (const [name, observations] of ledger) {
         near(actual.averageScore, selected.reduce((total, p) => total + p.finalScore / n, 0), `${name} score`);
       }
     }
-  }
-  for (const opponent of api.calculatePlayerOpponents(records, name)) {
-    const pair = pairs[JSON.stringify([name, opponent.name])];
-    assert.equal(opponent.games, pair.games);
-    assert.equal(opponent.ahead + opponent.behind + opponent.tied, pair.games);
-    near(opponent.scoreDifference, pair.scoreDifference, `${name} opponent difference`);
   }
 }
 // Check each marked penalty independently so future imports and added games stay valid.
