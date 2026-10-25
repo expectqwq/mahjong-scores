@@ -221,7 +221,6 @@
         .metric-card { background: #f6f7fc; border: 1px solid #e6e8f3; border-radius: 10px; padding: 16px; min-width: 0; }
         .metric-label { color: #606a80; font-size: .9em; margin-bottom: 8px; }
         .metric-value { color: #354792; font-size: 1.55em; font-weight: bold; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
-        .metric-note { color: #666; font-size: .8em; line-height: 1.5; margin-top: 7px; }
         .rank-distribution { margin-bottom: 24px; }
         .rank-stack { display: flex; height: 24px; width: 100%; border-radius: 8px; overflow: hidden; background: #edf0f7; }
         .rank-segment { flex-shrink: 0; height: 100%; }
@@ -247,6 +246,20 @@
             .section-nav a { padding: 8px 10px; font-size: .88em; }
         }
         /* PLAYER_DETAILS_END */
+
+        /* PLAYER_PICKERS_START */
+        .player-picker { position: relative; width: 180px; max-width: 100%; }
+        .player-picker-trigger { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #bbb; border-radius: 5px; background: white; color: #333; font: inherit; text-align: left; cursor: pointer; }
+        .player-picker-trigger > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+        .player-picker-trigger[aria-expanded="true"] { border-color: #667eea; box-shadow: 0 0 0 2px #eef0ff; }
+        .player-picker-trigger:disabled { color: #888; cursor: default; background: #f4f4f4; }
+        .player-picker-arrow { color: #6672d7; flex-shrink: 0; }
+        .player-picker-menu { position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; width: 100%; max-height: 240px; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; padding: 4px; border: 1px solid #cbd0e4; border-radius: 8px; background: white; box-shadow: 0 8px 22px rgba(35, 47, 94, .16); }
+        .player-picker-option { display: block; width: 100%; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 4px; background: white; color: #333; font: inherit; text-align: left; overflow-wrap: anywhere; cursor: pointer; }
+        .player-picker-option[aria-selected="true"] { color: #4054b4; background: #eef0ff; font-weight: bold; }
+        .player-picker-option:hover, .player-picker-option:focus-visible { background: #dfe4ff; outline: 2px solid #667eea; outline-offset: -2px; }
+        @media (max-width: 768px) { .player-picker { width: 100%; } }
+        /* PLAYER_PICKERS_END */
 
     </style>
 </head>
@@ -293,7 +306,7 @@
             <h2 id="playerDetailsTitle">📈 选手详情</h2>
             <div class="stats-toolbar">
                 <label for="detailPlayer">选手</label>
-                <select id="detailPlayer" onchange="updatePlayerDetails()" aria-controls="playerDetailBody"></select>
+                <select hidden id="detailPlayer" onchange="updatePlayerDetails()" aria-controls="playerDetailBody"></select>
                 <label for="detailSemester">统计范围</label>
                 <select id="detailSemester" onchange="updatePlayerDetails()" aria-controls="playerDetailBody"><option value="all">所有学期</option></select>
             </div>
@@ -322,9 +335,9 @@
             <p class="stats-note">固定统计所有学期：Σ（A 的最终得分 − B 的最终得分，含顺位分），只计两人同桌的对局。正数表示 A 高于 B，负数表示 A 低于 B；换学期不减半，不受上方学期筛选影响。</p>
             <div class="stats-toolbar">
                 <label for="pairPlayerA">玩家 A</label>
-                <select id="pairPlayerA" onchange="updatePairRanking()"><option value="">全部玩家</option></select>
+                <select hidden id="pairPlayerA" onchange="updatePairRanking()"><option value="">全部玩家</option></select>
                 <label for="pairPlayerB">玩家 B</label>
-                <select id="pairPlayerB" onchange="updatePairRanking()"><option value="">全部玩家</option></select>
+                <select hidden id="pairPlayerB" onchange="updatePairRanking()"><option value="">全部玩家</option></select>
             </div>
             <p id="pairSummary" class="stats-note" aria-live="polite"></p>
             <div class="table-scroll pair-scroll">
@@ -470,6 +483,124 @@
             return stats;
         }
 
+        // PLAYER_PICKERS_START
+        function closePlayerPickers(except = null) {
+            document.querySelectorAll('.player-picker').forEach(picker => {
+                if (picker === except) return;
+                picker.querySelector('.player-picker-menu').hidden = true;
+                picker.querySelector('.player-picker-trigger').setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        function syncPlayerPicker(id) {
+            const select = document.getElementById(id);
+            let picker = document.getElementById(`${id}Picker`);
+            if (!picker) {
+                picker = document.createElement('div');
+                picker.id = `${id}Picker`;
+                picker.className = 'player-picker';
+                select.before(picker);
+                select.hidden = true;
+                picker.appendChild(select);
+                const label = document.querySelector(`label[for="${id}"]`);
+                label.id = `${id}Label`;
+                label.htmlFor = `${id}Trigger`;
+                const trigger = document.createElement('button');
+                trigger.type = 'button';
+                trigger.id = `${id}Trigger`;
+                trigger.className = 'player-picker-trigger';
+                trigger.setAttribute('aria-haspopup', 'listbox');
+                trigger.setAttribute('aria-expanded', 'false');
+                trigger.setAttribute('aria-controls', `${id}Options`);
+                trigger.setAttribute('aria-labelledby', `${label.id} ${id}Value`);
+                const value = document.createElement('span');
+                value.id = `${id}Value`;
+                const arrow = document.createElement('span');
+                arrow.className = 'player-picker-arrow';
+                arrow.textContent = '▾';
+                arrow.setAttribute('aria-hidden', 'true');
+                trigger.append(value, arrow);
+                const menu = document.createElement('div');
+                menu.id = `${id}Options`;
+                menu.className = 'player-picker-menu';
+                menu.setAttribute('role', 'listbox');
+                menu.setAttribute('aria-labelledby', label.id);
+                menu.hidden = true;
+                picker.append(trigger, menu);
+                const open = (fromEnd = false) => {
+                    closePlayerPickers(picker);
+                    menu.hidden = false;
+                    trigger.setAttribute('aria-expanded', 'true');
+                    const option = fromEnd ? menu.lastElementChild : menu.querySelector('[aria-selected="true"]') || menu.firstElementChild;
+                    if (option) {
+                        option.focus({ preventScroll: true });
+                        menu.scrollTop = option.offsetTop - menu.clientHeight / 2 + option.offsetHeight / 2;
+                    }
+                };
+                trigger.addEventListener('click', () => menu.hidden ? open() : closePlayerPickers());
+                trigger.addEventListener('keydown', event => {
+                    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                        event.preventDefault();
+                        open(event.key === 'ArrowUp');
+                    }
+                });
+                menu.addEventListener('click', event => {
+                    const option = event.target.closest('[role="option"]');
+                    if (!option || !menu.contains(option)) return;
+                    select.value = option.dataset.value;
+                    select.dispatchEvent(new Event('change', { bubbles: true }));
+                    closePlayerPickers();
+                    trigger.focus({ preventScroll: true });
+                });
+                menu.addEventListener('keydown', event => {
+                    const options = [...menu.children];
+                    const index = options.indexOf(document.activeElement);
+                    let next;
+                    if (event.key === 'ArrowDown') next = (index + 1) % options.length;
+                    if (event.key === 'ArrowUp') next = (index - 1 + options.length) % options.length;
+                    if (event.key === 'Home') next = 0;
+                    if (event.key === 'End') next = options.length - 1;
+                    if (next !== undefined && options[next]) {
+                        event.preventDefault();
+                        options[next].focus({ preventScroll: true });
+                        const option = options[next];
+                        if (option.offsetTop < menu.scrollTop) menu.scrollTop = option.offsetTop;
+                        else if (option.offsetTop + option.offsetHeight > menu.scrollTop + menu.clientHeight) menu.scrollTop = option.offsetTop + option.offsetHeight - menu.clientHeight;
+                    }
+                    if (event.key === 'Escape') {
+                        event.preventDefault();
+                        closePlayerPickers();
+                        trigger.focus({ preventScroll: true });
+                    }
+                });
+                picker.addEventListener('focusout', event => {
+                    if (!picker.contains(event.relatedTarget)) closePlayerPickers();
+                });
+                select.addEventListener('change', () => syncPlayerPicker(id));
+            }
+            const trigger = picker.querySelector('.player-picker-trigger');
+            const menu = picker.querySelector('.player-picker-menu');
+            trigger.disabled = select.disabled || !select.options.length;
+            document.getElementById(`${id}Value`).textContent = select.selectedOptions[0]?.textContent || '暂无选手';
+            menu.replaceChildren(...[...select.options].map(item => {
+                const option = document.createElement('button');
+                option.type = 'button';
+                option.className = 'player-picker-option';
+                option.setAttribute('role', 'option');
+                option.setAttribute('aria-selected', String(item.selected));
+                option.tabIndex = -1;
+                option.dataset.value = item.value;
+                option.textContent = item.textContent;
+                return option;
+            }));
+        }
+
+        window.addEventListener('pointerdown', event => {
+            const picker = event.target.closest('.player-picker');
+            closePlayerPickers(picker);
+        });
+        // PLAYER_PICKERS_END
+
         function updatePairFilters() {
             const names = Object.keys(playerStats).sort((a, b) => a.localeCompare(b, 'zh-CN'));
             ['pairPlayerA', 'pairPlayerB'].forEach(id => {
@@ -478,6 +609,7 @@
                 select.replaceChildren(new Option('全部玩家', ''));
                 names.forEach(name => select.add(new Option(name, name)));
                 select.value = names.includes(selected) ? selected : '';
+                syncPlayerPicker(id);
             });
         }
 
@@ -526,11 +658,10 @@
             const result = {
                 games: entries.length, ranks: [0, 0, 0, 0], totalScore: 0, totalPenalty: 0,
                 penaltyGames: 0, negativePoints: 0, averageRank: null, averageRawGain: null,
-                averageScore: null, averageBaseScore: null, longestTopTwo: 0
+                averageScore: null
             };
             let pointSum = 0;
             let rankSum = 0;
-            let topTwoStreak = 0;
             entries.forEach(({ player }) => {
                 result.ranks[player.rank]++;
                 rankSum += player.rank + 1;
@@ -540,14 +671,11 @@
                 result.totalPenalty += player.penalty ?? 0;
                 if ((player.penalty ?? 0) < 0) result.penaltyGames++;
                 if (player.points < 0) result.negativePoints++;
-                topTwoStreak = player.rank < 2 ? topTwoStreak + 1 : 0;
-                result.longestTopTwo = Math.max(result.longestTopTwo, topTwoStreak);
             });
             if (result.games) {
                 result.averageRank = rankSum / result.games;
                 result.averageRawGain = (pointSum - 25000 * result.games) / result.games;
                 result.averageScore = result.totalScore / result.games;
-                result.averageBaseScore = (result.totalScore - result.totalPenalty) / result.games;
             }
             return result;
         }
@@ -565,8 +693,8 @@
         }
 
         function renderMetricCards(id, cards) {
-            document.getElementById(id).innerHTML = cards.map(([label, value, note]) =>
-                `<div class="metric-card"><div class="metric-label">${escapeHtml(label)}</div><div class="metric-value">${escapeHtml(value)}</div><div class="metric-note">${escapeHtml(note)}</div></div>`
+            document.getElementById(id).innerHTML = cards.map(([label, value]) =>
+                `<div class="metric-card"><div class="metric-label">${escapeHtml(label)}</div><div class="metric-value">${escapeHtml(value)}</div></div>`
             ).join('');
         }
 
@@ -579,6 +707,7 @@
             const mostActive = [...names].sort((a, b) => playerStats[b].games - playerStats[a].games)[0];
             playerSelect.value = names.includes(selectedPlayer) ? selectedPlayer : mostActive || '';
             playerSelect.disabled = !names.length;
+            syncPlayerPicker('detailPlayer');
             const semesterSelect = document.getElementById('detailSemester');
             const selectedSemester = semesterSelect.value;
             semesterSelect.replaceChildren(new Option('所有学期', 'all'));
@@ -605,19 +734,17 @@
             document.getElementById('playerDetailSummary').textContent = `${name} · ${scope} · 样本 ${n} 场${range}`;
             const rateValue = count => n ? formatRate(count / n) : '—';
             renderMetricCards('playerMetricCards', [
-                ['参赛场次', `${n} 场`, '当前统计范围的有效对局'],
-                ['一位率', rateValue(metrics.ranks[0]), `${metrics.ranks[0]} / ${n} 场获得一位`],
-                ['连对率', rateValue(metrics.ranks[0] + metrics.ranks[1]), `${metrics.ranks[0] + metrics.ranks[1]} / ${n} 场进入前二`],
-                ['避四率', rateValue(n - metrics.ranks[3]), `${n - metrics.ranks[3]} / ${n} 场未获得四位`],
-                ['平均顺位', detailNumber(metrics.averageRank, 2), '一至四位的平均值，越低越好'],
-                ['平均素点得失', detailNumber(metrics.averageRawGain, 1, true), '单位：点；终局点数 − 25,000'],
-                ['场均得分', detailNumber(metrics.averageScore, 2, true), '单位：分；含顺位分及违规扣分'],
-                ['范围内总得分', detailNumber(metrics.totalScore, 1, true), '逐场得分之和，跨学期不减半'],
-                ['当前累计积分（所有学期）', detailNumber(playerStats[name].totalScore, 1, true), '与排行榜一致，沿用换学期减半规则'],
-                ['被飞率', rateValue(metrics.negativePoints), `${metrics.negativePoints} / ${n} 场终局点数小于 0`],
-                ['最长连续前二', `${metrics.longestTopTwo} 场`, '按本人参赛顺序计算'],
-                ['违规扣分', `${detailNumber(metrics.totalPenalty)} 分 / ${metrics.penaltyGames} 场`, '仅统计已标记的违规扣分'],
-                ['扣罚前场均得分', detailNumber(metrics.averageBaseScore, 2, true), '在最终得分中还原已标记的违规扣分']
+                ['参赛场次', `${n} 场`],
+                ['一位率', rateValue(metrics.ranks[0])],
+                ['连对率', rateValue(metrics.ranks[0] + metrics.ranks[1])],
+                ['避四率', rateValue(n - metrics.ranks[3])],
+                ['平均顺位', detailNumber(metrics.averageRank, 2)],
+                ['平均素点得失', detailNumber(metrics.averageRawGain, 1, true)],
+                ['场均得分', detailNumber(metrics.averageScore, 2, true)],
+                ['范围内总得分', detailNumber(metrics.totalScore, 1, true)],
+                ['当前累计积分（所有学期）', detailNumber(playerStats[name].totalScore, 1, true)],
+                ['被飞率', rateValue(metrics.negativePoints)],
+                ['违规扣分', `${detailNumber(metrics.totalPenalty)} 分 / ${metrics.penaltyGames} 场`]
             ]);
             const rankColors = ['#b38a19', '#6c7c98', '#b57c51', '#8b6bb4'];
             const rankLabels = metrics.ranks.map((count, index) => `${index + 1} 位：${detailRate(count, n)}`);
@@ -934,7 +1061,10 @@
             }
         }
 
-        window.onload = loadData;
+        window.onload = () => {
+            ['detailPlayer', 'pairPlayerA', 'pairPlayerB'].forEach(syncPlayerPicker);
+            loadData();
+        };
     </script>
 </body>
 </html>

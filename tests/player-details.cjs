@@ -30,8 +30,7 @@ assert.deepEqual(plain(metrics.ranks), [2, 1, 0, 1]);
 for (const [key, expected] of Object.entries({
   games: 4, totalScore: 20, totalPenalty: -20, penaltyGames: 1,
   negativePoints: 1, averageRank: 2,
-  averageRawGain: 0, averageScore: 5, averageBaseScore: 10,
-  longestTopTwo: 2
+  averageRawGain: 0, averageScore: 5
 })) near(metrics[key], expected, key);
 assert.equal(api.calculatePlayerStats(fixture, true).A.totalScore, 2);
 assert.equal(api.calculatePlayerMetrics(api.getPlayerGames(fixture, 'A', '1')).totalScore, 36);
@@ -39,7 +38,7 @@ assert.equal(api.calculatePlayerMetrics(api.getPlayerGames(fixture, 'A', '2')).t
 assert.equal(api.calculatePairStats(fixture)['["A","B"]'].scoreDifference, 5);
 const empty = api.calculatePlayerMetrics(api.getPlayerGames(fixture, 'missing'));
 assert.equal(empty.games, 0);
-for (const key of ['averageRank', 'averageRawGain', 'averageScore', 'averageBaseScore']) assert.equal(empty[key], null);
+for (const key of ['averageRank', 'averageRawGain', 'averageScore']) assert.equal(empty[key], null);
 const exactlyBase = api.calculatePlayerMetrics([{ player: player('A', 25000, 2, 0) }]);
 assert.equal(exactlyBase.negativePoints, 0);
 
@@ -82,9 +81,8 @@ for (const name of ledger.keys()) {
   for (const entry of api.getPlayerGames(records, name).filter(e => e.player.penalty < 0)) {
     const single = api.calculatePlayerMetrics([entry]);
     near(single.averageScore, entry.player.finalScore, `${name} net score`);
-    near(single.averageBaseScore, entry.player.finalScore - entry.player.penalty, `${name} pre-penalty score`);
     near(single.averageRawGain, entry.player.points - 25000, `${name} raw points`);
     assert.equal(single.totalPenalty, entry.player.penalty);
   }
 }
-console.log(`PASS: known-result fixtures and all ${ledger.size} players across terms/recent windows; penalties, empty/single samples, streaks and opponent differences.`);
+console.log(`PASS: known-result fixtures and all ${ledger.size} players across terms/recent windows; penalties, empty/single samples and pair differences.`);
