@@ -743,8 +743,7 @@
                 ['场均得分', detailNumber(metrics.averageScore, 2, true)],
                 ['范围内总得分', detailNumber(metrics.totalScore, 1, true)],
                 ['当前累计积分（所有学期）', detailNumber(playerStats[name].totalScore, 1, true)],
-                ['被飞率', rateValue(metrics.negativePoints)],
-                ['违规扣分', `${detailNumber(metrics.totalPenalty)} 分 / ${metrics.penaltyGames} 场`]
+                ['被飞率', rateValue(metrics.negativePoints)]
             ]);
             const rankColors = ['#b38a19', '#6c7c98', '#b57c51', '#8b6bb4'];
             const rankLabels = metrics.ranks.map((count, index) => `${index + 1} 位：${detailRate(count, n)}`);
