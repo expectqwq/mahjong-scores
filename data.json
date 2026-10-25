@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026/10/26 00:04:12",
+  "exportDate": "2026/10/26 03:32:59",
   "records": [
     {
       "date": "2025/10/18 00:41:28",
@@ -1881,6 +1881,36 @@
           "finalScore": -46.1
         }
       ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/26 03:32:59",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 37300,
+          "rank": 0,
+          "finalScore": 42.3
+        },
+        {
+          "name": "wzl",
+          "points": 31400,
+          "rank": 1,
+          "finalScore": 16.4
+        },
+        {
+          "name": "sgc",
+          "points": 19300,
+          "rank": 2,
+          "finalScore": -15.7
+        },
+        {
+          "name": "cyz",
+          "points": 12000,
+          "rank": 3,
+          "finalScore": -43
+        }
+      ]
     }
   ],
   "statistics": {
@@ -1895,14 +1925,14 @@
       "games": 51
     },
     "wzl": {
-      "totalScore": 383,
+      "totalScore": 399.4,
       "ranks": [
         17,
-        18,
+        19,
         8,
         7
       ],
-      "games": 50
+      "games": 51
     },
     "gy": {
       "totalScore": -58.6,
@@ -1925,14 +1955,14 @@
       "games": 10
     },
     "qzy": {
-      "totalScore": 171.4,
+      "totalScore": 213.7,
       "ranks": [
-        13,
+        14,
         4,
         8,
         6
       ],
-      "games": 31
+      "games": 32
     },
     "lsh": {
       "totalScore": -184.7,
@@ -1945,24 +1975,24 @@
       "games": 10
     },
     "sgc": {
-      "totalScore": -168.7,
+      "totalScore": -184.4,
       "ranks": [
         2,
         4,
-        5,
+        6,
         7
       ],
-      "games": 18
+      "games": 19
     },
     "cyz": {
-      "totalScore": -79.1,
+      "totalScore": -122.1,
       "ranks": [
         3,
         3,
         1,
-        7
+        8
       ],
-      "games": 14
+      "games": 15
     },
     "ydy": {
       "totalScore": 134.2,
