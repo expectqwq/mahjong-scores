@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026/10/26 03:34:01",
+  "exportDate": "2026/10/26 03:55:45",
   "records": [
     {
       "date": "2025/10/18 00:41:28",
@@ -1836,13 +1836,15 @@
           "name": "hzx",
           "points": 28100,
           "rank": 1,
-          "finalScore": 13.1
+          "finalScore": -6.9,
+          "penalty": -20
         },
         {
           "name": "cyz",
           "points": 21300,
           "rank": 2,
-          "finalScore": -13.7
+          "finalScore": -33.7,
+          "penalty": -20
         },
         {
           "name": "qzy",
@@ -2015,7 +2017,7 @@
       "games": 19
     },
     "cyz": {
-      "totalScore": -134.7,
+      "totalScore": -154.7,
       "ranks": [
         3,
         3,
@@ -2145,7 +2147,7 @@
       "games": 6
     },
     "hzx": {
-      "totalScore": 13.1,
+      "totalScore": -6.9,
       "ranks": [
         0,
         1,

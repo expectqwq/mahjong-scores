@@ -277,6 +277,15 @@
             return Math.round(num * 10) / 10;
         }
 
+        function formatGameScore(player) {
+            const finalScore = roundToOneDecimal(player.finalScore).toFixed(1);
+            const penalty = player.penalty ?? 0;
+            if (!penalty) return finalScore;
+            // finalScore 已扣除罚分；历史记录显示原始得分和扣分标记。
+            const originalScore = roundToOneDecimal(player.finalScore - penalty).toFixed(1);
+            return `${originalScore} <span title="违规扣分，已计入总分；扣分后得分：${finalScore}">(${penalty})</span>`;
+        }
+
         function formatRate(rate) {
             return (rate * 100).toFixed(1) + '%';
         }
@@ -306,7 +315,8 @@
                 const players = record.players.map(player => {
                     if (!player || typeof player.name !== 'string' || !player.name.trim() ||
                         !Number.isSafeInteger(player.points) || !Number.isInteger(player.rank) ||
-                        player.rank < 0 || player.rank > 3 || !Number.isFinite(player.finalScore)) {
+                        player.rank < 0 || player.rank > 3 || !Number.isFinite(player.finalScore) ||
+                        (player.penalty !== undefined && (!Number.isFinite(player.penalty) || player.penalty > 0))) {
                         throw new Error(`第 ${index + 1} 条记录的玩家姓名、点数、名次或得分无效。`);
                     }
                     const name = player.name.trim();
@@ -631,7 +641,7 @@
                         playerDiv.innerHTML = `
                             <div class="player-name">${escapeHtml(player.name)} (第${player.rank + 1}名)</div>
                             <div>点数: ${player.points}</div>
-                            <div class="score-value">得分: ${roundToOneDecimal(player.finalScore).toFixed(1)}</div>
+                            <div class="score-value">得分: ${formatGameScore(player)}</div>
                         `;
                         details.appendChild(playerDiv);
                     });
