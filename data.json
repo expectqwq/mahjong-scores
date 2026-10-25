@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026/10/19 00:16:56",
+  "exportDate": "2026/10/26 00:04:12",
   "records": [
     {
       "date": "2025/10/18 00:41:28",
@@ -1821,6 +1821,66 @@
           "finalScore": -37
         }
       ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/26 00:04:12",
+      "players": [
+        {
+          "name": "wzl",
+          "points": 43300,
+          "rank": 0,
+          "finalScore": 48.3
+        },
+        {
+          "name": "hzx",
+          "points": 28100,
+          "rank": 1,
+          "finalScore": 13.1
+        },
+        {
+          "name": "cyz",
+          "points": 21300,
+          "rank": 2,
+          "finalScore": -13.7
+        },
+        {
+          "name": "qzy",
+          "points": 7300,
+          "rank": 3,
+          "finalScore": -47.7
+        }
+      ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/26 00:04:12",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 36100,
+          "rank": 0,
+          "finalScore": 41.1
+        },
+        {
+          "name": "ydy",
+          "points": 31600,
+          "rank": 1,
+          "finalScore": 16.6
+        },
+        {
+          "name": "wzl",
+          "points": 23400,
+          "rank": 2,
+          "finalScore": -11.6
+        },
+        {
+          "name": "cyz",
+          "points": 8900,
+          "rank": 3,
+          "finalScore": -46.1
+        }
+      ]
     }
   ],
   "statistics": {
@@ -1835,14 +1895,14 @@
       "games": 51
     },
     "wzl": {
-      "totalScore": 346.3,
+      "totalScore": 383,
       "ranks": [
-        16,
+        17,
         18,
-        7,
+        8,
         7
       ],
-      "games": 48
+      "games": 50
     },
     "gy": {
       "totalScore": -58.6,
@@ -1865,14 +1925,14 @@
       "games": 10
     },
     "qzy": {
-      "totalScore": 178,
+      "totalScore": 171.4,
       "ranks": [
-        12,
+        13,
         4,
         8,
-        5
+        6
       ],
-      "games": 29
+      "games": 31
     },
     "lsh": {
       "totalScore": -184.7,
@@ -1895,24 +1955,24 @@
       "games": 18
     },
     "cyz": {
-      "totalScore": -19.3,
+      "totalScore": -79.1,
       "ranks": [
         3,
         3,
-        0,
-        6
+        1,
+        7
       ],
-      "games": 12
+      "games": 14
     },
     "ydy": {
-      "totalScore": 117.6,
+      "totalScore": 134.2,
       "ranks": [
         2,
-        8,
+        9,
         3,
         0
       ],
-      "games": 13
+      "games": 14
     },
     "ywk": {
       "totalScore": -30.3,
@@ -2023,6 +2083,16 @@
         1
       ],
       "games": 5
+    },
+    "hzx": {
+      "totalScore": 13.1,
+      "ranks": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "games": 1
     }
   }
 }
