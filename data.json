@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026/10/26 03:32:59",
+  "exportDate": "2026/10/26 03:34:01",
   "records": [
     {
       "date": "2025/10/18 00:41:28",
@@ -1911,6 +1911,36 @@
           "finalScore": -43
         }
       ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/26 03:34:01",
+      "players": [
+        {
+          "name": "qzy",
+          "points": 40700,
+          "rank": 0,
+          "finalScore": 45.7
+        },
+        {
+          "name": "wzl",
+          "points": 26100,
+          "rank": 1,
+          "finalScore": 11.1
+        },
+        {
+          "name": "cyz",
+          "points": 22400,
+          "rank": 2,
+          "finalScore": -12.6
+        },
+        {
+          "name": "lyx",
+          "points": 10800,
+          "rank": 3,
+          "finalScore": -44.2
+        }
+      ]
     }
   ],
   "statistics": {
@@ -1925,14 +1955,14 @@
       "games": 51
     },
     "wzl": {
-      "totalScore": 399.4,
+      "totalScore": 410.5,
       "ranks": [
         17,
-        19,
+        20,
         8,
         7
       ],
-      "games": 51
+      "games": 52
     },
     "gy": {
       "totalScore": -58.6,
@@ -1955,14 +1985,14 @@
       "games": 10
     },
     "qzy": {
-      "totalScore": 213.7,
+      "totalScore": 259.4,
       "ranks": [
-        14,
+        15,
         4,
         8,
         6
       ],
-      "games": 32
+      "games": 33
     },
     "lsh": {
       "totalScore": -184.7,
@@ -1985,14 +2015,14 @@
       "games": 19
     },
     "cyz": {
-      "totalScore": -122.1,
+      "totalScore": -134.7,
       "ranks": [
         3,
         3,
-        1,
+        2,
         8
       ],
-      "games": 15
+      "games": 16
     },
     "ydy": {
       "totalScore": 134.2,
@@ -2105,14 +2135,14 @@
       "games": 1
     },
     "lyx": {
-      "totalScore": 64.9,
+      "totalScore": 20.7,
       "ranks": [
         2,
         1,
         1,
-        1
+        2
       ],
-      "games": 5
+      "games": 6
     },
     "hzx": {
       "totalScore": 13.1,
