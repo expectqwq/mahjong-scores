@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026/10/28 01:04:33",
+  "exportDate": "2026/10/29 01:05:49",
   "records": [
     {
       "date": "2025/10/18 00:41:28",
@@ -1973,6 +1973,36 @@
           "finalScore": -35.4
         }
       ]
+    },
+    {
+      "type": "game",
+      "date": "2026/10/29 01:05:49",
+      "players": [
+        {
+          "name": "ss",
+          "points": 57600,
+          "rank": 0,
+          "finalScore": 62.6
+        },
+        {
+          "name": "wzl",
+          "points": 19200,
+          "rank": 1,
+          "finalScore": 4.2
+        },
+        {
+          "name": "lyx",
+          "points": 17800,
+          "rank": 2,
+          "finalScore": -17.2
+        },
+        {
+          "name": "sgc",
+          "points": 5400,
+          "rank": 3,
+          "finalScore": -49.6
+        }
+      ]
     }
   ],
   "statistics": {
@@ -1987,14 +2017,14 @@
       "games": 51
     },
     "wzl": {
-      "totalScore": 397.3,
+      "totalScore": 401.5,
       "ranks": [
         17,
-        20,
+        21,
         9,
         7
       ],
-      "games": 53
+      "games": 54
     },
     "gy": {
       "totalScore": -58.6,
@@ -2037,14 +2067,14 @@
       "games": 10
     },
     "sgc": {
-      "totalScore": -145.5,
+      "totalScore": -195.1,
       "ranks": [
         3,
         4,
         6,
-        7
+        8
       ],
-      "games": 20
+      "games": 21
     },
     "cyz": {
       "totalScore": -154.7,
@@ -2137,14 +2167,14 @@
       "games": 2
     },
     "ss": {
-      "totalScore": -21.6,
+      "totalScore": 41,
       "ranks": [
-        1,
+        2,
         1,
         1,
         1
       ],
-      "games": 4
+      "games": 5
     },
     "ckh": {
       "totalScore": 5.6,
@@ -2167,14 +2197,14 @@
       "games": 1
     },
     "lyx": {
-      "totalScore": -14.7,
+      "totalScore": -31.9,
       "ranks": [
         2,
         1,
-        1,
+        2,
         3
       ],
-      "games": 7
+      "games": 8
     },
     "hzx": {
       "totalScore": -6.9,
